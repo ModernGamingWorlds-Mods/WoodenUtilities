@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "minecraft:planks"
+    },
+    {
+      "item": "woodenutilities:wooden_shears"
+    }
+  ],
+  "result": {
+    "item": "woodenutilities:wooden_plate"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "type=bottom": { "model": "woodenutilities:block/crafting_slab_bottom" },
+    "type=top": { "model": "woodenutilities:block/crafting_slab_top" }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "woodenutilities:wooden_plate"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:wooden_leggings"
+  }
+}

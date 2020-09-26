@@ -1,0 +1,14 @@
+modLoader="javafml" #mandatory
+loaderVersion="[28,)" #mandatory (26 is current forge version)
+[[mods]] #mandatory
+modId="woodenutilities" #mandatory
+version="0.1-beta" #mandatory
+displayName="Wooden Utilities" #mandatory
+displayURL="https://www.curseforge.com/minecraft/mc-mods/wooden-utilities" #optional
+logoFile="logo.png" #optional
+credits="Mod Idea: ModernGamingWorld, Textures: lazy, Code: lazy" #optional
+authors="lazy, ModernGamingWorld" #optional
+description='''
+Wooden Utilities is a mod design for Minecraft 1.14 and above that adds many different types of wood related items to Minecraft gameplay.
+What is the main different between this mod and other mods that might add the same thing, Well This mod is design with the Mindset that anything in it is flammable and could be set on fire if you get to close to anything that could give heat.
+'''

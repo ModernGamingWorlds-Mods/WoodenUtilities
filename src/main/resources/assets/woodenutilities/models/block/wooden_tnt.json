@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "bottom": "woodenutilities:block/wooden_tnt_bottom",
+    "top": "woodenutilities:block/wooden_tnt_top",
+    "side": "woodenutilities:block/wooden_tnt_side"
+  }
+}
