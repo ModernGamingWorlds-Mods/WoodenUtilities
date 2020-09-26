@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[28,)" #mandatory (26 is current forge version)
+loaderVersion="[31,)" #mandatory (26 is current forge version)
 [[mods]] #mandatory
 modId="woodenutilities" #mandatory
 version="0.1-beta" #mandatory

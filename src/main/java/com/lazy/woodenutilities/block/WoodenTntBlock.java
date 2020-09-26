@@ -15,12 +15,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
@@ -65,7 +63,8 @@ public class WoodenTntBlock extends TNTBlock {
             TNTEntity tntentity = new TNTEntity(worldIn, ((float) pos.getX() + 0.5F), pos.getY(), ((float) pos.getZ() + 0.5F), explosionIn.getExplosivePlacedBy()) {
                 @Override
                 protected void explode() {
-                    this.world.createExplosion(this, this.posX, this.posY + (double) (this.getHeight() / 16.0F), this.posZ, Configs.TNT_POWER.get().floatValue(), Explosion.Mode.BREAK);
+                    Vec3d pos = this.getPositionVec();
+                    this.world.createExplosion(this, pos.x, pos.y + (double) (this.getHeight() / 16.0F), pos.z, Configs.TNT_POWER.get().floatValue(), Explosion.Mode.BREAK);
                 }
             };
             tntentity.setFuse((short) (worldIn.rand.nextInt(tntentity.getFuse() / 4) + tntentity.getFuse() / 8));
@@ -78,15 +77,16 @@ public class WoodenTntBlock extends TNTBlock {
             TNTEntity tntentity = new TNTEntity(worldIn, ((float) pos.getX() + 0.5F), pos.getY(), ((float) pos.getZ() + 0.5F), entityIn) {
                 @Override
                 protected void explode() {
-                    this.world.createExplosion(this, this.posX, this.posY + (double) (this.getHeight() / 16.0F), this.posZ, Configs.TNT_POWER.get().floatValue(), Explosion.Mode.BREAK);
+                    Vec3d pos = this.getPositionVec();
+                    this.world.createExplosion(this, pos.x, pos.y + (double) (this.getHeight() / 16.0F), pos.z, Configs.TNT_POWER.get().floatValue(), Explosion.Mode.BREAK);
                 }
             };
             worldIn.addEntity(tntentity);
-            worldIn.playSound(null, tntentity.posX, tntentity.posY, tntentity.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            worldIn.playSound(null, tntentity.getPositionVec().x, tntentity.getPositionVec().y, tntentity.getPositionVec().z, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
     }
 
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack itemstack = player.getHeldItem(handIn);
         Item item = itemstack.getItem();
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
@@ -101,8 +101,7 @@ public class WoodenTntBlock extends TNTBlock {
             } else {
                 itemstack.shrink(1);
             }
-
-            return true;
+            return ActionResultType.SUCCESS;
         }
     }
 

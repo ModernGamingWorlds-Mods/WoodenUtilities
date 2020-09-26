@@ -6,6 +6,7 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -33,15 +34,15 @@ public class WoodSolarPanelBlock extends BasicWoodBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
-            return true;
+            return ActionResultType.SUCCESS;
         } else {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof WoodenSolarPanelTileEntity) {
                 player.openContainer((WoodenSolarPanelTileEntity) tileentity);
             }
-            return true;
+            return ActionResultType.SUCCESS;
         }
     }
 

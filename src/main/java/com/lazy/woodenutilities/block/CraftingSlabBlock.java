@@ -14,6 +14,8 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.WorkbenchContainer;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.properties.SlabType;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IWorldPosCallable;
@@ -40,9 +42,14 @@ public class CraftingSlabBlock extends SlabBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        player.openContainer(state.getContainer(worldIn, pos));
-        return true;
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (worldIn.isRemote) {
+            return ActionResultType.SUCCESS;
+        } else {
+            player.openContainer(state.getContainer(worldIn, pos));
+            player.addStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+            return ActionResultType.SUCCESS;
+        }
     }
 
     @Override

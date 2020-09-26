@@ -1,6 +1,7 @@
 package com.lazy.woodenutilities.client.event;
 
 import com.lazy.woodenutilities.WoodenUtilities;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -12,7 +13,7 @@ public class TextureStitching {
 
     @SubscribeEvent
     public static void onEvent(TextureStitchEvent.Pre e) {
-        if (!e.getMap().getBasePath().equals("textures")) return;
+        if (!e.getMap().getTextureLocation().equals(AtlasTexture.LOCATION_BLOCKS_TEXTURE)) return;
         e.addSprite(new ResourceLocation(WoodenUtilities.MOD_ID, "item/axe_slot_empty"));
     }
 }

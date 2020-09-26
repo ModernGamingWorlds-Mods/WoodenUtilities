@@ -20,6 +20,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -50,7 +51,7 @@ public class WoodenFurnaceBlock extends AbstractFurnaceBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         super.randomTick(state, worldIn, pos, random);
     }
 
@@ -60,8 +61,9 @@ public class WoodenFurnaceBlock extends AbstractFurnaceBlock {
         tooltip.add(new TranslationTextComponent("woodenfurnace.caution"));
     }
 
+
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (state.get(LIT)) {
             if (random.nextDouble() < .3d && worldIn.getBlockState(pos.up()).getBlock() == Blocks.FIRE) {
                 worldIn.removeBlock(pos, false);

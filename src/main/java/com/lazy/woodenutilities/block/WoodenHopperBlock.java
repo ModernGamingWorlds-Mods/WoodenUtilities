@@ -122,16 +122,17 @@ public class WoodenHopperBlock extends BasicWoodBlock {
         }
     }
 
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
-            return true;
+            return ActionResultType.SUCCESS;
         } else {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof WoodenHopperTileEntity) {
                 player.openContainer((WoodenHopperTileEntity) tileentity);
                 player.addStat(Stats.INSPECT_HOPPER);
             }
-            return true;
+            return ActionResultType.SUCCESS;
         }
     }
 
@@ -167,10 +168,6 @@ public class WoodenHopperBlock extends BasicWoodBlock {
 
     public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
         return Container.calcRedstone(worldIn.getTileEntity(pos));
-    }
-
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {

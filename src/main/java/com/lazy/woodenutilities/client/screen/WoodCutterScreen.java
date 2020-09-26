@@ -92,7 +92,7 @@ public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
     }
 
     private void drawRecipesItems(int left, int top, int recipeIndexOffsetMax) {
-        RenderHelper.enableGUIStandardItemLighting();
+        RenderHelper.enableStandardItemLighting();
         List<Item> list = this.container.getRecipeList();
 
         if (this.minecraft != null) {

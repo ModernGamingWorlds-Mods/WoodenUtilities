@@ -347,7 +347,7 @@ public class WoodenHopperTileEntity extends LockableLootTileEntity implements IH
             if (tileentity instanceof IInventory) {
                 iinventory = (IInventory) tileentity;
                 if (iinventory instanceof ChestTileEntity && block instanceof ChestBlock) {
-                    iinventory = ChestBlock.getInventory(blockstate, worldIn, blockpos, true);
+                    iinventory = ChestBlock.func_226916_a_((ChestBlock) block, blockstate, worldIn, blockpos, true);
                 }
             }
         }
