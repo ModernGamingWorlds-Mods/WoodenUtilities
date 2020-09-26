@@ -3,16 +3,16 @@
 </h1>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lazyMods/WoodenUtilities.svg">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lazyMods/WoodenUtilities">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/lazyMods/WoodenUtilities.svg">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/lazyMods/WoodenUtilities">
   
   <a href="https://github.com/lazyMods/WoodenUtilities/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/lazyMods/WoodenUtilities.svg">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/lazyMods/WoodenUtilities">
   </a>
 
   <a href="https://github.com/lazyMods/WoodenUtilities/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/lazyMods/WoodenUtilities.svg">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/lazyMods/WoodenUtilities">
   </a>
 
   <a href="https://www.curseforge.com/minecraft/mc-mods/wooden-utilities">
@@ -22,8 +22,10 @@
   <a href="https://www.curseforge.com/minecraft/mc-mods/wooden-utilities">
     <img alt="Repository issues" src="http://cf.way2muchnoise.eu/versions/366844.svg">
   </a>
-
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  
+  <a href="https://opensource.org/licenses/MIT">
+    <img alt="Repository issues" src="https://img.shields.io/badge/License-MIT-yellow.svg">
+  </a>
 </p>
 
 
