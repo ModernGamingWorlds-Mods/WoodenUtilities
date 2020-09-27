@@ -50,7 +50,7 @@ public class AxeSlot extends Slot {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public Pair<ResourceLocation, ResourceLocation> getBackground() {
+    public Pair<ResourceLocation, ResourceLocation> func_225517_c_() { //getBackground
         return Pair.of(PlayerContainer.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(WoodenUtilities.MOD_ID, "item/axe_slot_empty"));
     }
 }

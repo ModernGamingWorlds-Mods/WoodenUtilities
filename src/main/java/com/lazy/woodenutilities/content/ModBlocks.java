@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class ModBlocks {
 
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, WoodenUtilities.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WoodenUtilities.MOD_ID);
 
     public static RegistryObject<WoodenHopperBlock> WOODEN_HOPPER;
     public static RegistryObject<WoodenFurnaceBlock> WOODEN_FURNACE;

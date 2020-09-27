@@ -20,7 +20,7 @@ public class WoodenLampBlock extends BasicWoodBlock {
     private final VoxelShape SHAPE = Block.makeCuboidShape(4.0D, 0D, 4.0D, 12.0D, 9.0D, 12.0D);
 
     public WoodenLampBlock() {
-        super("wooden_lamp", Properties.from(Blocks.OAK_PLANKS).lightValue(15));
+        super("wooden_lamp", Properties.from(Blocks.OAK_PLANKS).func_235838_a_((blockState) -> 15));
     }
 
     @Override

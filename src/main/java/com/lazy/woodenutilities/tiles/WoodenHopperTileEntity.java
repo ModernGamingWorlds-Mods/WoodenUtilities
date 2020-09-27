@@ -67,8 +67,9 @@ public class WoodenHopperTileEntity extends LockableLootTileEntity implements IH
         return new TranslationTextComponent("container.wooden_hopper");
     }
 
-    public void read(CompoundNBT compound) {
-        super.read(compound);
+    @Override
+    public void func_230337_a_(BlockState state, CompoundNBT compound) { //read
+        super.func_230337_a_(state, compound);
         this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         if (!this.checkLootAndRead(compound)) {
             ItemStackHelper.loadAllItems(compound, this.inventory);
