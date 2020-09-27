@@ -2,7 +2,7 @@ modLoader="javafml" #mandatory
 loaderVersion="[28,)" #mandatory (26 is current forge version)
 [[mods]] #mandatory
 modId="woodenutilities" #mandatory
-version="0.1-beta" #mandatory
+version="1.0" #mandatory
 displayName="Wooden Utilities" #mandatory
 displayURL="https://www.curseforge.com/minecraft/mc-mods/wooden-utilities" #optional
 logoFile="logo.png" #optional
