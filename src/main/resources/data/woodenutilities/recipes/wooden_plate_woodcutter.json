@@ -1,8 +1,0 @@
-{
-  "type": "woodenutilities:woodcutting",
-  "ingredient": {
-    "item": "minecraft:oak_planks"
-  },
-  "result": "woodenutilities:wooden_plate",
-  "count": 2
-}
