@@ -5,6 +5,7 @@ bin
 .metadata
 .classpath
 .project
+java_pid12216.hprof
 
 # idea
 out
@@ -21,6 +22,7 @@ build
 eclipse
 run
 src/test/
+logs/
 
 # Files from Forge MDK
 forge*changelog.txt
