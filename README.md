@@ -41,6 +41,7 @@ Wooden Utilities is a mod design for Minecraft 1.14 and above that adds many dif
 ### Authors:
 
 * [@BedrockLegends](https://github.com/BedrockLegends) - Idea and logo.
+* Me - Main developer.
 
 ### License:
 
