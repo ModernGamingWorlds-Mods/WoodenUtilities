@@ -1,6 +1,7 @@
 package com.lazy.woodenutilities.util;
 
 import com.google.gson.JsonObject;
+import com.lazy.woodenutilities.WoodenUtilities;
 import com.lazy.woodenutilities.content.ModBlocks;
 import com.lazy.woodenutilities.content.ModRecipeSerializers;
 import com.lazy.woodenutilities.content.ModRecipeTypes;
@@ -20,6 +21,10 @@ public class WoodCutterRecipe extends SingleItemRecipe {
 
     public WoodCutterRecipe(ResourceLocation recipeLoaction, String group, Ingredient ingredient, ItemStack result) {
         super(ModRecipeTypes.WOOD_CUTTER, ModRecipeSerializers.WOODCUTTING.get(), recipeLoaction, group, ingredient, result);
+    }
+
+    public WoodCutterRecipe(Ingredient ingredient, ItemStack result) {
+        super(ModRecipeTypes.WOOD_CUTTER, ModRecipeSerializers.WOODCUTTING.get(), new ResourceLocation(WoodenUtilities.MOD_ID, result.getItem().getRegistryName().getPath()), "", ingredient, result);
     }
 
     public boolean matches(IInventory inv, World worldIn) {
