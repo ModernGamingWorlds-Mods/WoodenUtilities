@@ -26,5 +26,7 @@
   "block.woodenutilities.wooden_lamp": "Wooden Lamp",
   "block.woodenutilities.wooden_tnt": "Wooden TNT Block",
 
-  "woodenfurnace.caution": "§4§lCaution:§r This furnace can catch on fire by himself."
+  "woodenfurnace.caution": "§4§lCaution:§r This furnace can catch on fire by himself.",
+
+  "jei.woodcutter.title": "Woodcutter"
 }
