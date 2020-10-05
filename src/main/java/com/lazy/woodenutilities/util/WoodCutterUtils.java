@@ -1,20 +1,21 @@
 package com.lazy.woodenutilities.util;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WoodCutterUtils {
 
     public static Map<String, List<Item>> getWoodVariants() {
         Map<String, List<Item>> woodVariants = new HashMap<>();
-        ForgeRegistries.ITEMS.forEach((item)->{
-            if(item.getRegistryName() != null){
-                if(item.getRegistryName().getPath().contains("planks")){
+        ForgeRegistries.ITEMS.forEach((item) -> {
+            if (item.getRegistryName() != null) {
+                if (item.getRegistryName().getPath().contains("planks")) {
                     String plankType = item.getRegistryName().getPath().replace("_planks", "");
                     List<Item> variants = new ArrayList<>();
                     ForgeRegistries.ITEMS.forEach((item1) -> {
@@ -41,5 +42,25 @@ public class WoodCutterUtils {
             }
         });
         return woodVariants;
+    }
+
+    public static Collection<WoodCutterRecipe> createRecipesForJEI() {
+        Collection<WoodCutterRecipe> woodCutterRecipes = Minecraft.getInstance().world.getRecipeManager().getRecipes().stream().filter(WoodCutterRecipe.class::isInstance).map(WoodCutterRecipe.class::cast).collect(Collectors.toList());
+
+        getWoodVariants().forEach((key, values) -> {
+            Item item = ForgeRegistries.ITEMS.getValues().stream().filter(i -> i.getRegistryName().toString().contains(":" + key + "_planks")).collect(Collectors.toList()).get(0);
+            values.forEach((i) -> {
+                ItemStack result;
+                if (i.getRegistryName().getPath().contains("slab")) {
+                    result = new ItemStack(i, 2);
+                } else {
+                    result = new ItemStack(i);
+                }
+                WoodCutterRecipe recipe = new WoodCutterRecipe(Ingredient.fromStacks(new ItemStack(item)), result);
+                woodCutterRecipes.add(recipe);
+            });
+        });
+
+        return woodCutterRecipes;
     }
 }
