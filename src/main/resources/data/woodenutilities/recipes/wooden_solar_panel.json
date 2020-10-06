@@ -7,16 +7,16 @@
   ],
   "key": {
     "Q": {
-      "item": "minecraft:redstone"
+      "item": "forge:dusts/redstone"
     },
     "R": {
-      "item": "minecraft:redstone_block"
+      "tag": "forge:storage_blocks/redstone"
     },
     "W": {
       "tag": "minecraft:planks"
     },
     "G": {
-      "item": "minecraft:glass"
+      "tag": "forge:glass"
     },
     "P": {
       "item": "woodenutilities:wooden_plate"

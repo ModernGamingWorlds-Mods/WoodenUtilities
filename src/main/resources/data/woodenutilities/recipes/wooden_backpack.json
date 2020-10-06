@@ -10,7 +10,7 @@
       "item": "woodenutilities:wooden_plate"
     },
     "P": {
-      "item": "minecraft:chest"
+      "tag": "forge:chests/wooden"
     }
   },
   "result": {
