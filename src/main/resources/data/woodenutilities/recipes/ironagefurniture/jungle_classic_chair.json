@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "item": "minecraft:jungle_planks"
+    },
+    "result": "ironagefurniture:chair_wood_ironage_classic_jungle",
+    "count": 1
+}
