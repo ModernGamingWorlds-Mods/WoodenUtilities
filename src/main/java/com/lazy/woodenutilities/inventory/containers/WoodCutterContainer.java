@@ -188,14 +188,14 @@ public class WoodCutterContainer extends Container {
                     this.plankVariants = WoodCutterUtils.getWoodVariants().get(stack.getItem().getRegistryName().getPath().replace("_planks",""));
                 }
                 this.jsonRecipes = this.world.getRecipeManager().getRecipes(ModRecipeTypes.WOOD_CUTTER, inventoryIn, this.world);
+                if(Configs.NEED_AXE.get() && this.axeSlot.getStack().isEmpty()) return;
+                if(this.axeSlot.getToolItem().getTier().getHarvestLevel() < Configs.MINIMUM_AXE_TIER.get()) return;
                 this.jsonRecipes.forEach((woodCutterRecipe)->{
                     Item block = woodCutterRecipe.getCraftingResult(inventoryIn).getItem();
                     if(!this.plankVariants.contains(block)){
                         this.allRecipes.add(block);
                     }
                 });
-                if(Configs.NEED_AXE.get() && this.axeSlot.getStack().isEmpty()) return;
-                if(this.axeSlot.getToolItem().getTier().getHarvestLevel() < Configs.MINIMUM_AXE_TIER.get()) return;
                 if(plankVariants != null) this.allRecipes.addAll(this.plankVariants);
             }
         }
