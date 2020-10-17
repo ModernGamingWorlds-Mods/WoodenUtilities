@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "item": "engineersdecor:old_industrial_wood_slab"
+    },
+    "result": "engineersdecor:treated_wood_stool",
+    "count": 1
+}
