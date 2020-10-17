@@ -21,6 +21,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoader;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +31,7 @@ import java.util.List;
 public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
 
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("woodenutilities", "textures/gui/container/woodcutter.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE_NO_jEI = new ResourceLocation("woodenutilities", "textures/gui/container/woodcutter_no_jei.png");
     private float sliderProgress;
     private boolean clickedOnScroll;
     private int recipeIndexOffset;
@@ -62,7 +65,11 @@ public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
     protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY) {
         this.renderBackground(stack);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+        if(ModList.get().isLoaded("jei")){
+            this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+        } else {
+            this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE_NO_jEI);
+        }
         int i = this.guiLeft;
         int j = this.guiTop;
         this.blit(stack, i, j, 0, 0, this.xSize, this.ySize);
