@@ -12,7 +12,7 @@
       }
     ],
     "X": {
-      "item": "minecraft:gunpowder"
+      "tag": "forge:gunpowder"
     }
   },
   "result": {
