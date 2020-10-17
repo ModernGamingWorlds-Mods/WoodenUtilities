@@ -1,15 +1,18 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url "https://plugins.gradle.org/m2/"}
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.0"
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: "com.wynprice.cursemaven"
 
 version = modVersion
 group = modGroup
@@ -72,5 +75,9 @@ dependencies {
     minecraft "net.minecraftforge:forge:${modMcVersion}-${modForgeVersion}"
 
     compileOnly fg.deobf("mezz.jei:jei-${modMcVersion}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${modMcVersion}:${jei_version}")
+    /*runtimeOnly fg.deobf("mezz.jei:jei-${modMcVersion}:${jei_version}")
+
+    compile fg.deobf("curse.maven:xnet:3057539")
+    compile fg.deobf("curse.maven:mcjtylib:3082667")
+    compile fg.deobf("curse.maven:rftools-base:3057532")*/
 }
