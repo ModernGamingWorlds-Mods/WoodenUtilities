@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "item": "engineersdecor:old_industrial_wood_planks"
+    },
+    "result": "engineersdecor:treated_wood_pole",
+    "count": 1
+}
