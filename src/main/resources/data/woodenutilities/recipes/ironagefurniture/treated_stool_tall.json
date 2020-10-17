@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "tag": "forge:treated_wood"
+    },
+    "result": "ironagefurniture:chair_wood_ironage_stool_tall_immersiveengineering_treated_wood",
+    "count": 1
+}
