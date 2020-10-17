@@ -56,7 +56,7 @@ public class WoodenBackpack extends BasicWoodItem implements INamedContainerProv
             ItemStackHelper.loadAllItems(stack.getTag(), stacks);
             for (ItemStack stack1 : stacks) {
                 if (stack1 != ItemStack.EMPTY)
-                    tooltip.add(new StringTextComponent(stack1.getDisplayName().getFormattedText()).appendText(" x" + stack1.getCount()));
+                    tooltip.add(new StringTextComponent(stack1.getDisplayName().getString()).appendString(" x" + stack1.getCount()));
             }
         }
     }

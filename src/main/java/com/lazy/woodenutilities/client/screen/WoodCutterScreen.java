@@ -4,6 +4,7 @@ import com.lazy.woodenutilities.Configs;
 import com.lazy.woodenutilities.WoodenUtilities;
 import com.lazy.woodenutilities.client.widget.SlotWidget;
 import com.lazy.woodenutilities.inventory.containers.WoodCutterContainer;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SimpleSound;
@@ -17,14 +18,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.Collections;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(WoodenUtilities.MOD_ID, "textures/gui/container/woodcutter.png");
+
+    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("woodenutilities", "textures/gui/container/woodcutter.png");
     private float sliderProgress;
     private boolean clickedOnScroll;
     private int recipeIndexOffset;
@@ -42,38 +46,36 @@ public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
             this.addButton(new SlotWidget(this.guiLeft + 17, this.guiTop + 47));
     }
 
-    public void render(int mouseX, int mouseY, float partialTicks) {
-        super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
+    @Override
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
         if (this.hoveredSlot == this.container.axeSlot) {
             if (this.container.axeSlot.getStack().isEmpty()) {
-                this.renderTooltip("Needs an axe with the minimum tier being " + ItemTier.values()[Configs.MINIMUM_AXE_TIER.get()].name(), mouseX, mouseY);
+                //renderTooltip
+                this.func_243308_b(matrixStack, Collections.singletonList(new StringTextComponent("Needs an axe with the minimum tier being " + ItemTier.values()[Configs.MINIMUM_AXE_TIER.get()].name())), mouseX, mouseY);
             }
         }
     }
 
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.font.drawString(this.title.getFormattedText(), 8.0F, 4.0F, 4210752);
-        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 94), 4210752);
-    }
-
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        this.renderBackground();
+    @Override
+    protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY) {
+        this.renderBackground(stack);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         int i = this.guiLeft;
         int j = this.guiTop;
-        this.blit(i, j, 0, 0, this.xSize, this.ySize);
+        this.blit(stack, i, j, 0, 0, this.xSize, this.ySize);
         int k = (int) (41.0F * this.sliderProgress);
-        this.blit(i + 119, j + 15 + k, 176 + (this.canScroll() ? 0 : 12), 0, 12, 15);
+        this.blit(stack, i + 119, j + 15 + k, 176 + (this.canScroll() ? 0 : 12), 0, 12, 15);
         int l = this.guiLeft + 48;
         int i1 = this.guiTop + 14;
         int j1 = this.recipeIndexOffset + 12;
-        this.drawRecipesBackground(mouseX, mouseY, l, i1, j1);
+        this.drawRecipesBackground(stack, mouseX, mouseY, l, i1, j1);
         this.drawRecipesItems(l, i1, j1);
     }
 
-    private void drawRecipesBackground(int mouseX, int mouseY, int left, int top, int recipeIndexOffsetMax) {
+    private void drawRecipesBackground(MatrixStack stack, int mouseX, int mouseY, int left, int top, int recipeIndexOffsetMax) {
         for (int i = this.recipeIndexOffset; i < recipeIndexOffsetMax && i < this.container.getRecipeListSize(); ++i) {
             int j = i - this.recipeIndexOffset;
             int k = left + j % 4 * 17;
@@ -86,13 +88,13 @@ public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
                 j1 += 38;
             }
 
-            this.blit(k, i1 - 1, 0, j1, 17, 19);
+            this.blit(stack, k, i1 - 1, 0, j1, 17, 19);
         }
 
     }
 
     private void drawRecipesItems(int left, int top, int recipeIndexOffsetMax) {
-        RenderHelper.enableGUIStandardItemLighting();
+        RenderHelper.enableStandardItemLighting();
         List<Item> list = this.container.getRecipeList();
 
         if (this.minecraft != null) {
@@ -108,6 +110,7 @@ public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
         RenderHelper.disableStandardItemLighting();
     }
 
+    @Override
     public boolean mouseClicked(double p_mouseClicked_1_, double p_mouseClicked_3_, int p_mouseClicked_5_) {
         this.clickedOnScroll = false;
         if (this.hasItemsInInputSlot) {
@@ -136,6 +139,7 @@ public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
         return super.mouseClicked(p_mouseClicked_1_, p_mouseClicked_3_, p_mouseClicked_5_);
     }
 
+    @Override
     public boolean mouseDragged(double p_mouseDragged_1_, double p_mouseDragged_3_, int p_mouseDragged_5_, double p_mouseDragged_6_, double p_mouseDragged_8_) {
         if (this.clickedOnScroll && this.canScroll()) {
             int i = this.guiTop + 14;
@@ -149,6 +153,7 @@ public class WoodCutterScreen extends ContainerScreen<WoodCutterContainer> {
         }
     }
 
+    @Override
     public boolean mouseScrolled(double p_mouseScrolled_1_, double p_mouseScrolled_3_, double p_mouseScrolled_5_) {
         if (this.canScroll()) {
             int i = this.getHiddenRows();

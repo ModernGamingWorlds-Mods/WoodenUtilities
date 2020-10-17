@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModTiles {
 
-    public static final DeferredRegister<TileEntityType<?>> TILES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, WoodenUtilities.MOD_ID);
+    public static final DeferredRegister<TileEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, WoodenUtilities.MOD_ID);
 
     public static final RegistryObject<TileEntityType<WoodenHopperTileEntity>> WOODEN_HOPPER_TILE = TILES.register("wooden_hopper",
             ()-> TileEntityType.Builder.create(WoodenHopperTileEntity::new, ModBlocks.WOODEN_HOPPER.get()).build(null));

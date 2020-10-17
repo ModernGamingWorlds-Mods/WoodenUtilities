@@ -1,8 +1,9 @@
 modLoader="javafml" #mandatory
-loaderVersion="[28,)" #mandatory (26 is current forge version)
+loaderVersion="[34,)" #mandatory (26 is current forge version)
+license="MIT"
 [[mods]] #mandatory
 modId="woodenutilities" #mandatory
-version="1.0" #mandatory
+version="1.0.1" #mandatory
 displayName="Wooden Utilities" #mandatory
 displayURL="https://www.curseforge.com/minecraft/mc-mods/wooden-utilities" #optional
 logoFile="logo.png" #optional

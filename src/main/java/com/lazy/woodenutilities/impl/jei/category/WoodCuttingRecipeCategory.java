@@ -32,7 +32,7 @@ public class WoodCuttingRecipeCategory implements IRecipeCategory<WoodCutterReci
         ResourceLocation location = new ResourceLocation(ModIds.JEI_ID, "textures/gui/gui_vanilla.png");
         background = guiHelper.createDrawable(location, 0, 220, width, height);
         icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.WOOD_CUTTER.get()));
-        localizedName = new TranslationTextComponent("jei.woodcutter.title").getFormattedText();
+        localizedName = new TranslationTextComponent("jei.woodcutter.title").getString();
     }
 
     @Override

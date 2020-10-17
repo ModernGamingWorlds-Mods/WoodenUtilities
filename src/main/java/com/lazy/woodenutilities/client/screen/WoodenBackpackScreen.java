@@ -2,6 +2,7 @@ package com.lazy.woodenutilities.client.screen;
 
 import com.lazy.woodenutilities.WoodenUtilities;
 import com.lazy.woodenutilities.inventory.containers.WoodenBackpackContainer;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -19,22 +20,19 @@ public class WoodenBackpackScreen extends ContainerScreen<WoodenBackpackContaine
         super(containerIn, playerInv, titleIn);
     }
 
-    public void render(int mouseX, int mouseY, float partialTicks) {
-        super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
+    @Override
+    public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
+        super.render(stack, mouseX, mouseY, partialTicks);
+        this.renderHoveredTooltip(stack, mouseX, mouseY);
     }
 
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.font.drawString(this.title.getFormattedText(), 8.0F, 4.0F, 4210752);
-        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) 39, 4210752);
-    }
-
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        this.renderBackground();
+    @Override
+    protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY) {
+        this.renderBackground(stack);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         int i = this.guiLeft;
         int j = this.guiTop;
-        this.blit(i, j, 0, 0, this.xSize, this.ySize);
+        this.blit(stack, i, j, 0, 0, this.xSize, this.ySize);
     }
 }

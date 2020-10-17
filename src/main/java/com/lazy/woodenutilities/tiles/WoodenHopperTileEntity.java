@@ -67,8 +67,8 @@ public class WoodenHopperTileEntity extends LockableLootTileEntity implements IH
         return new TranslationTextComponent("container.wooden_hopper");
     }
 
-    public void read(CompoundNBT compound) {
-        super.read(compound);
+    public void read(BlockState state, CompoundNBT compound) {
+        super.read(state, compound);
         this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         if (!this.checkLootAndRead(compound)) {
             ItemStackHelper.loadAllItems(compound, this.inventory);
@@ -347,7 +347,7 @@ public class WoodenHopperTileEntity extends LockableLootTileEntity implements IH
             if (tileentity instanceof IInventory) {
                 iinventory = (IInventory) tileentity;
                 if (iinventory instanceof ChestTileEntity && block instanceof ChestBlock) {
-                    iinventory = ChestBlock.getInventory(blockstate, worldIn, blockpos, true);
+                    iinventory = ChestBlock.getChestInventory((ChestBlock) block, blockstate, worldIn, blockpos, true);
                 }
             }
         }

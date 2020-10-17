@@ -4,9 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -22,7 +20,7 @@ public class WoodenLampBlock extends BasicWoodBlock {
     private final VoxelShape SHAPE = Block.makeCuboidShape(4.0D, 0D, 4.0D, 12.0D, 9.0D, 12.0D);
 
     public WoodenLampBlock() {
-        super("wooden_lamp", Properties.from(Blocks.OAK_PLANKS).lightValue(15));
+        super("wooden_lamp", Properties.from(Blocks.OAK_PLANKS).setLightLevel((state) -> 15));
     }
 
     @Override
@@ -31,21 +29,8 @@ public class WoodenLampBlock extends BasicWoodBlock {
     }
 
     @Override
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
-
-    public boolean func_220074_n(BlockState state) {
-        return true;
-    }
-
-    @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
-    }
-
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @OnlyIn(Dist.CLIENT)

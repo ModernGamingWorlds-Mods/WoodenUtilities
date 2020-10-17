@@ -36,10 +36,10 @@ public class WoodCutterBlock extends BasicWoodBlock {
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         player.openContainer(state.getContainer(worldIn, pos));
         player.addStat(Stats.INTERACT_WITH_STONECUTTER);
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     @Nullable
@@ -51,20 +51,8 @@ public class WoodCutterBlock extends BasicWoodBlock {
         return SHAPE;
     }
 
-    public boolean func_220074_n(BlockState state) {
-        return true;
-    }
-
-    public boolean isSolid(BlockState state) {
-        return true;
-    }
-
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
-    }
-
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {

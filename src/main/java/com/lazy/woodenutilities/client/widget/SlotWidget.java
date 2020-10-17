@@ -1,6 +1,7 @@
 package com.lazy.woodenutilities.client.widget;
 
 import com.lazy.woodenutilities.WoodenUtilities;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.Widget;
@@ -12,7 +13,7 @@ public class SlotWidget extends Widget {
     private static final ResourceLocation BUTTON_STYLES = new ResourceLocation(WoodenUtilities.MOD_ID, "textures/gui/button_styles.png");
 
     public SlotWidget(int xIn, int yIn) {
-        super(xIn, yIn, 18, 18, new StringTextComponent("").toString());
+        super(xIn, yIn, 18, 18, new StringTextComponent(""));
     }
 
     @Override
@@ -21,12 +22,12 @@ public class SlotWidget extends Widget {
     }
 
     @Override
-    public void renderButton(int mouseX, int mouseY, float partialTicks) {
+    public void renderButton(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
         Minecraft mc = Minecraft.getInstance();
 
         mc.getTextureManager().bindTexture(BUTTON_STYLES);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.blit(this.x, this.y, 0, 0, this.width, this.height);
+        this.blit(stack, this.x, this.y, 0, 0, this.width, this.height);
     }
 }

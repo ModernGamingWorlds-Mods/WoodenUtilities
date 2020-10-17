@@ -12,6 +12,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -46,11 +47,18 @@ public class WoodenShearsItem extends ShearsItem {
     public boolean onBlockDestroyed(ItemStack stackIn, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if(Configs.DROP_SHEARS_PRODUCTS.get()){
             Block block = state.getBlock();
-           if(state.isIn(BlockTags.LEAVES) || block == Blocks.GRASS || block == Blocks.FERN || block == Blocks.DEAD_BUSH || block == Blocks.VINE){
-               Block.spawnAsEntity(worldIn, pos, new ItemStack(state.getBlock().asItem()));
-           }
+            if(isPresentOnTag(BlockTags.LEAVES, state) || block == Blocks.GRASS || block == Blocks.FERN || block == Blocks.DEAD_BUSH || block == Blocks.VINE){
+                Block.spawnAsEntity(worldIn, pos, new ItemStack(state.getBlock().asItem()));
+            }
         }
         return super.onBlockDestroyed(stackIn, worldIn, state, pos, entityLiving);
+    }
+
+    public boolean isPresentOnTag(ITag.INamedTag<Block> tag, BlockState state){
+        for(Block block : tag.getAllElements()){
+            return state.isIn(block);
+        }
+        return false;
     }
 
     @Override
@@ -61,10 +69,5 @@ public class WoodenShearsItem extends ShearsItem {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         return super.getDestroySpeed(stack, state);
-    }
-
-    @Override
-    public boolean itemInteractionForEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity entity, Hand hand) {
-        return super.itemInteractionForEntity(stack, playerIn, entity, hand);
     }
 }

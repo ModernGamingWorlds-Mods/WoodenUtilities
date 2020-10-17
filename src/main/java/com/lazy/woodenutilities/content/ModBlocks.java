@@ -15,21 +15,22 @@ import java.util.stream.Collectors;
 
 public class ModBlocks {
 
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, WoodenUtilities.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WoodenUtilities.MOD_ID);
 
     public static RegistryObject<WoodenHopperBlock> WOODEN_HOPPER;
     public static RegistryObject<WoodenFurnaceBlock> WOODEN_FURNACE;
     public static RegistryObject<WoodCutterBlock> WOOD_CUTTER;
     public static RegistryObject<WoodSolarPanelBlock> WOODEN_SOLAR_PANEL;
+    public static RegistryObject<WoodenLampBlock> WOODEN_LAMP;
 
     public static void init(IEventBus bus) {
         WOODEN_HOPPER = BLOCKS.register("wooden_hopper", WoodenHopperBlock::new);
         WOODEN_FURNACE = BLOCKS.register("wooden_furnace", WoodenFurnaceBlock::new);
         WOOD_CUTTER = BLOCKS.register("wood_cutter", WoodCutterBlock::new);
         WOODEN_SOLAR_PANEL = BLOCKS.register("wooden_solar_panel", WoodSolarPanelBlock::new);
+        WOODEN_LAMP = BLOCKS.register("wooden_lamp", WoodenLampBlock::new);
 
         BLOCKS.register("crafting_slab", CraftingSlabBlock::new);
-        BLOCKS.register("wooden_lamp", WoodenLampBlock::new);
         BLOCKS.register("wooden_tnt", WoodenTntBlock::new);
         BLOCKS.register("wooden_bars", WoodenBarsBlock::new);
 

@@ -1,10 +1,12 @@
 package com.lazy.woodenutilities.inventory.slot;
 
 import com.lazy.woodenutilities.WoodenUtilities;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
@@ -46,10 +48,9 @@ public class AxeSlot extends Slot {
         return super.isEnabled();
     }
 
-    @Nullable
-    @Override
     @OnlyIn(Dist.CLIENT)
-    public TextureAtlasSprite getBackgroundSprite() {
-        return getBackgroundMap().getSprite(new ResourceLocation(WoodenUtilities.MOD_ID, "item/axe_slot_empty"));
+    @Override
+    public Pair<ResourceLocation, ResourceLocation> getBackground() {
+        return Pair.of(PlayerContainer.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(WoodenUtilities.MOD_ID, "item/axe_slot_empty"));
     }
 }

@@ -48,6 +48,12 @@ public class WoodArmorMaterial {
             public float getToughness() {
                 return 0.0F;
             }
+
+            @Override
+            public float getKnockbackResistance() {
+                return 0.0F;
+            }
+
         };
     }
 }

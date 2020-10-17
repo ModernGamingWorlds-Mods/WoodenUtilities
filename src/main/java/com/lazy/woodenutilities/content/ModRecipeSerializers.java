@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod.EventBusSubscriber(modid = WoodenUtilities.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModRecipeSerializers {
 
-    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, WoodenUtilities.MOD_ID);
+    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, WoodenUtilities.MOD_ID);
 
     public static final RegistryObject<IRecipeSerializer<WoodCutterRecipe>> WOODCUTTING = RECIPE_SERIALIZERS.register("woodcutting",
             () -> new WoodCutterRecipe.Serializer<>(WoodCutterRecipe::new));

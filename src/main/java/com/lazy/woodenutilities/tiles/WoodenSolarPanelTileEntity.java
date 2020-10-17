@@ -3,6 +3,7 @@ package com.lazy.woodenutilities.tiles;
 import com.lazy.woodenutilities.Configs;
 import com.lazy.woodenutilities.content.ModTiles;
 import com.lazy.woodenutilities.inventory.containers.WoodenSolarPanelContainer;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -90,8 +91,8 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
     }
 
     @Override
-    public void read(CompoundNBT compound) {
-        super.read(compound);
+    public void read(BlockState state, CompoundNBT compound) {
+        super.read(state, compound);
         this.internalBuffer = compound.getInt(TAG_BUFFER);
         this.inputValue = compound.getInt(TAG_INPUT);
         this.outputValue = compound.getInt(TAG_OUTPUT);
@@ -121,7 +122,7 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
     }
 
     public int calculateInputValue(@Nonnull World world){
-        if (world.dimension.hasSkyLight()) {
+        if (world.getDimensionType().hasSkyLight()) {
             int i = world.getLightFor(LightType.SKY, this.pos) - world.getSkylightSubtracted();
             float f = world.getCelestialAngleRadians(1.0F);
 
