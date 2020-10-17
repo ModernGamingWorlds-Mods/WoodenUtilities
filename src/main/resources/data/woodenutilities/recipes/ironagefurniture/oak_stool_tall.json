@@ -1,8 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "ingredient": {
-        "item": "minecraft:oak_planks"
-    },
-    "result": "ironagefurniture:chair_wood_ironage_stool_tall_oak",
-    "count": 1
-}
