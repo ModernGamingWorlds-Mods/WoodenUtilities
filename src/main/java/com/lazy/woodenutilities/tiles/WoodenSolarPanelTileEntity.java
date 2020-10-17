@@ -13,6 +13,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -107,12 +108,15 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
 
                     this.inputValue = this.calculateInputValue(this.world);
 
-                    if(this.workTime >= this.maxWorkTime){
+                    if (this.workTime >= this.maxWorkTime) {
                         this.internalBuffer += this.inputValue;
+                        this.checkAndSendEnergyIFPossible(this.world);
                         this.workTime = 0;
                     } else {
                         this.workTime++;
                     }
+
+
 
                     if (!tileInv.getStackInSlot(0).isEmpty())
                         this.getEnergyStorage().extractEnergy(this.outputValue, false);
@@ -120,8 +124,25 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
             }
         }
     }
+    
+    private void checkAndSendEnergyIFPossible(@Nonnull World world){
+        for (Direction d : Direction.values()) {
+            TileEntity tile = world.getTileEntity(pos.offset(d));
+            if(tile != null){
+                if(tile.getCapability(CapabilityEnergy.ENERGY).isPresent()){
+                    tile.getCapability(CapabilityEnergy.ENERGY).ifPresent((cap)->{
+                        if(cap.canReceive() && this.getEnergyStorage().canExtract()){
+                            this.getEnergyStorage().extractEnergy(this.outputValue, false);
+                            cap.receiveEnergy(this.outputValue, false);
+                            this.markDirty();
+                        }
+                    });
+                }
+            }
+        }
+    }
 
-    public int calculateInputValue(@Nonnull World world){
+    public int calculateInputValue(@Nonnull World world) {
         if (world.getDimensionType().hasSkyLight()) {
             int i = world.getLightFor(LightType.SKY, this.pos) - world.getSkylightSubtracted();
             float f = world.getCelestialAngleRadians(1.0F);
