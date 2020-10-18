@@ -28,6 +28,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
 
 import java.util.List;
 
@@ -192,8 +193,10 @@ public class WoodCutterContainer extends Container {
                 if(this.axeSlot.getToolItem().getTier().getHarvestLevel() < Configs.MINIMUM_AXE_TIER.get()) return;
                 this.jsonRecipes.forEach((woodCutterRecipe)->{
                     Item block = woodCutterRecipe.getCraftingResult(inventoryIn).getItem();
-                    if(!this.plankVariants.contains(block)){
-                        this.allRecipes.add(block);
+                    if (ModList.get().isLoaded(woodCutterRecipe.modId)){
+                        if(!this.plankVariants.contains(block)){
+                            this.allRecipes.add(block);
+                        }
                     }
                 });
                 if(plankVariants != null) this.allRecipes.addAll(this.plankVariants);

@@ -56,7 +56,7 @@ public class WoodCutterUtils {
                 } else {
                     result = new ItemStack(i);
                 }
-                WoodCutterRecipe recipe = new WoodCutterRecipe(Ingredient.fromStacks(new ItemStack(item)), result);
+                WoodCutterRecipe recipe = new WoodCutterRecipe(Ingredient.fromStacks(new ItemStack(item)), result, i.getRegistryName().getNamespace());
                 woodCutterRecipes.add(recipe);
             });
         });
