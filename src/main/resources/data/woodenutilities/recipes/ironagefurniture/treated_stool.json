@@ -1,5 +1,6 @@
 {
     "type": "woodenutilities:woodcutting",
+    "modid": "ironagefurniture",
     "ingredient": {
         "tag": "forge:treated_wood"
     },

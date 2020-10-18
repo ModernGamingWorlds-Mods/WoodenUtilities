@@ -1,5 +1,6 @@
 {
     "type": "woodenutilities:woodcutting",
+    "modid": "engineersdecor",
     "ingredient": {
         "item": "engineersdecor:old_industrial_wood_slab"
     },

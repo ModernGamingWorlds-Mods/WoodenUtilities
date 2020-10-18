@@ -1,5 +1,6 @@
 {
     "type": "woodenutilities:woodcutting",
+    "modid": "ironagefurniture",
     "ingredient": {
         "item": "minecraft:jungle_planks"
     },

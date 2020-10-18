@@ -1,5 +1,6 @@
 {
     "type": "woodenutilities:woodcutting",
+    "modid": "immersiveengineering",
     "ingredient": {
         "tag": "forge:treated_wood"
     },

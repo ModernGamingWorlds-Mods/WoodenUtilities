@@ -1,5 +1,6 @@
 {
     "type": "woodenutilities:woodcutting",
+    "modid": "immersiveengineering",
     "ingredient": {
         "item": "immersiveengineering:treated_wood_packaged"
     },
