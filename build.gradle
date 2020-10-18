@@ -75,9 +75,4 @@ dependencies {
     minecraft "net.minecraftforge:forge:${modMcVersion}-${modForgeVersion}"
 
     compileOnly fg.deobf("mezz.jei:jei-${modMcVersion}:${jei_version}:api")
-    /*runtimeOnly fg.deobf("mezz.jei:jei-${modMcVersion}:${jei_version}")
-
-    compile fg.deobf("curse.maven:xnet:3057539")
-    compile fg.deobf("curse.maven:mcjtylib:3082667")
-    compile fg.deobf("curse.maven:rftools-base:3057532")*/
 }
