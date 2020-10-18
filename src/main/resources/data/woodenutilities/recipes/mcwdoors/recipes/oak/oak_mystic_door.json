@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "item": "minecraft:oak_planks"
+    },
+    "result": "mcwdoors:oak_mystic_door",
+    "count": 1
+}

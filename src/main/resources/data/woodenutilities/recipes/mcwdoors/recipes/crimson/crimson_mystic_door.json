@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "item": "minecraft:crimson_planks"
+    },
+    "result": "mcwdoors:crimson_mystic_door",
+    "count": 1
+}

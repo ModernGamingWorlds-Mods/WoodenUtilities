@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "item": "minecraft:dark_oak_planks"
+    },
+    "result": "mcwdoors:dark_oak_japanese_door",
+    "count": 1
+}

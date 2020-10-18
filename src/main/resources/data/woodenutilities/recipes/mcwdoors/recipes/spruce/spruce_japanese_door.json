@@ -1,0 +1,8 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "ingredient": {
+        "item": "minecraft:spruce_planks"
+    },
+    "result": "mcwdoors:spruce_japanese_door",
+    "count": 1
+}
