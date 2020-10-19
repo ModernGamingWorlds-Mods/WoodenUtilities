@@ -47,20 +47,22 @@ public class WoodCutterUtils {
     public static Collection<WoodCutterRecipe> createRecipesForJEI() {
         Collection<WoodCutterRecipe> woodCutterRecipes = Minecraft.getInstance().world.getRecipeManager().getRecipes().stream().filter(WoodCutterRecipe.class::isInstance).map(WoodCutterRecipe.class::cast).collect(Collectors.toList());
 
-        getWoodVariants().forEach((key, values) -> {
-            Item item = ForgeRegistries.ITEMS.getValues().stream().filter(i -> i.getRegistryName().toString().contains(":" + key + "_planks")).collect(Collectors.toList()).get(0);
-            values.forEach((i) -> {
-                ItemStack result;
-                if (i.getRegistryName().getPath().contains("slab")) {
-                    result = new ItemStack(i, 2);
-                } else {
-                    result = new ItemStack(i);
-                }
-                WoodCutterRecipe recipe = new WoodCutterRecipe(Ingredient.fromStacks(new ItemStack(item)), result, i.getRegistryName().getNamespace());
-                woodCutterRecipes.add(recipe);
-            });
+        getWoodVariants().forEach((plankType, variants) -> {
+            List<Item> plank = ForgeRegistries.ITEMS.getValues().stream().filter(i -> i.getRegistryName() != null).filter(i -> i.getRegistryName().toString().contains(":" + plankType + "_planks")).collect(Collectors.toList());
+            if (plank.size() == 1) {
+                Item item = plank.get(0);
+                variants.forEach((i) -> {
+                    ItemStack result;
+                    if (i.getRegistryName().getPath().contains("slab")) {
+                        result = new ItemStack(i, 2);
+                    } else {
+                        result = new ItemStack(i);
+                    }
+                    WoodCutterRecipe recipe = new WoodCutterRecipe(Ingredient.fromStacks(new ItemStack(item)), result, i.getRegistryName().getNamespace());
+                    woodCutterRecipes.add(recipe);
+                });
+            }
         });
-
         return woodCutterRecipes;
     }
 }
