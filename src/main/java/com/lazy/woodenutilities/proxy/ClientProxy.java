@@ -39,5 +39,6 @@ public class ClientProxy extends CommonProxy {
     private void setBlockTransparency(){
         RenderTypeLookup.setRenderLayer(ModBlocks.WOOD_CUTTER.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.WOODEN_LAMP.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModBlocks.WOODEN_BAR.get(), RenderType.getTranslucent());
     }
 }

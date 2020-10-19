@@ -8,6 +8,7 @@ import net.minecraft.block.FlowerPotBlock;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -22,6 +23,7 @@ public class ModBlocks {
     public static RegistryObject<WoodCutterBlock> WOOD_CUTTER;
     public static RegistryObject<WoodSolarPanelBlock> WOODEN_SOLAR_PANEL;
     public static RegistryObject<WoodenLampBlock> WOODEN_LAMP;
+    public static RegistryObject<WoodenBarsBlock> WOODEN_BAR;
 
     public static void init(IEventBus bus) {
         WOODEN_HOPPER = BLOCKS.register("wooden_hopper", WoodenHopperBlock::new);
@@ -29,10 +31,10 @@ public class ModBlocks {
         WOOD_CUTTER = BLOCKS.register("wood_cutter", WoodCutterBlock::new);
         WOODEN_SOLAR_PANEL = BLOCKS.register("wooden_solar_panel", WoodSolarPanelBlock::new);
         WOODEN_LAMP = BLOCKS.register("wooden_lamp", WoodenLampBlock::new);
+        WOODEN_BAR = BLOCKS.register("wooden_bars", WoodenBarsBlock::new);
 
         BLOCKS.register("crafting_slab", CraftingSlabBlock::new);
         BLOCKS.register("wooden_tnt", WoodenTntBlock::new);
-        BLOCKS.register("wooden_bars", WoodenBarsBlock::new);
 
         BLOCKS.register(bus);
     }
