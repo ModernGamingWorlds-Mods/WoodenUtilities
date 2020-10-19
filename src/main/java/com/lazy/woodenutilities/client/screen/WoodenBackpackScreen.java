@@ -27,6 +27,12 @@ public class WoodenBackpackScreen extends ContainerScreen<WoodenBackpackContaine
     }
 
     @Override
+    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY) {
+        this.font.func_243248_b(matrixStack, this.title, (float)this.titleX, (float)this.titleY, 4210752);
+        this.font.func_243248_b(matrixStack, this.playerInventory.getDisplayName(), (float)this.playerInventoryTitleX, 39.0F, 4210752);
+    }
+
+    @Override
     protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY) {
         this.renderBackground(stack);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
