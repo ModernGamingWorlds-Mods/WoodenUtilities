@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwbridges",
+    "ingredient": {
+        "item": "minecraft:spruce_planks"
+    },
+    "result": "mcwbridges:spruce_rail_bridge",
+    "count": 2
+}
