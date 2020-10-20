@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwbridges",
+    "ingredient": {
+        "item": "minecraft:crimson_planks"
+    },
+    "result": "mcwbridges:crimson_log_bridge_middle",
+    "count": 2
+}

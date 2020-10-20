@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwbridges",
+    "ingredient": {
+        "item": "minecraft:oak_planks"
+    },
+    "result": "mcwbridges:rope_oak_bridge_end",
+    "count": 2
+}

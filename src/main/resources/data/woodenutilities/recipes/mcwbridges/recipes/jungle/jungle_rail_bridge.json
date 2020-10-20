@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwbridges",
+    "ingredient": {
+        "item": "minecraft:jungle_planks"
+    },
+    "result": "mcwbridges:jungle_rail_bridge",
+    "count": 2
+}
