@@ -3,6 +3,10 @@ package com.lazy.woodenutilities.tiles;
 import com.lazy.woodenutilities.Configs;
 import com.lazy.woodenutilities.content.ModTiles;
 import com.lazy.woodenutilities.inventory.containers.WoodenSolarPanelContainer;
+import mekanism.api.Action;
+import mekanism.api.MekanismAPI;
+import mekanism.api.energy.IMekanismStrictEnergyHandler;
+import mekanism.api.math.FloatingLong;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -24,6 +28,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -117,26 +122,36 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
                     }
 
 
-
                     if (!tileInv.getStackInSlot(0).isEmpty())
                         this.getEnergyStorage().extractEnergy(this.outputValue, false);
                 }
             }
         }
     }
-    
-    private void checkAndSendEnergyIFPossible(@Nonnull World world){
+
+    private void checkAndSendEnergyIFPossible(@Nonnull World world) {
         for (Direction d : Direction.values()) {
             TileEntity tile = world.getTileEntity(pos.offset(d));
-            if(tile != null){
-                if(tile.getCapability(CapabilityEnergy.ENERGY).isPresent()){
-                    tile.getCapability(CapabilityEnergy.ENERGY).ifPresent((cap)->{
-                        if(cap.canReceive() && this.getEnergyStorage().canExtract()){
-                            this.getEnergyStorage().extractEnergy(this.outputValue, false);
-                            cap.receiveEnergy(this.outputValue, false);
-                            this.markDirty();
+            if (tile != null) {
+                if (tile.getCapability(CapabilityEnergy.ENERGY).isPresent()) {
+                    if (ModList.get().isLoaded(MekanismAPI.MEKANISM_MODID)) {
+                        if (tile instanceof IMekanismStrictEnergyHandler) {
+                            IMekanismStrictEnergyHandler energyHandler = (IMekanismStrictEnergyHandler) tile;
+                            if (this.getEnergyStorage().canExtract()) {
+                                this.getEnergyStorage().extractEnergy(this.outputValue, false);
+                                energyHandler.insertEnergy(FloatingLong.create(this.outputValue), Action.EXECUTE);
+                                this.markDirty();
+                            }
                         }
-                    });
+                    } else {
+                        tile.getCapability(CapabilityEnergy.ENERGY).ifPresent((cap) -> {
+                            if (cap.canReceive() && this.getEnergyStorage().canExtract()) {
+                                this.getEnergyStorage().extractEnergy(this.outputValue, false);
+                                cap.receiveEnergy(this.outputValue, false);
+                                this.markDirty();
+                            }
+                        });
+                    }
                 }
             }
         }
