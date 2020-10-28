@@ -227,4 +227,9 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
     public Container createMenu(int id, PlayerInventory playerInv, PlayerEntity playerEntity) {
         return new WoodenSolarPanelContainer(id, playerInv, tileInv, data);
     }
+
+    @Override
+    public void onChunkUnloaded() {
+        invalidateCaps();
+    }
 }
