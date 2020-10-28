@@ -3,10 +3,6 @@ package com.lazy.woodenutilities.tiles;
 import com.lazy.woodenutilities.Configs;
 import com.lazy.woodenutilities.content.ModTiles;
 import com.lazy.woodenutilities.inventory.containers.WoodenSolarPanelContainer;
-import mekanism.api.Action;
-import mekanism.api.MekanismAPI;
-import mekanism.api.energy.IMekanismStrictEnergyHandler;
-import mekanism.api.math.FloatingLong;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -14,6 +10,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -28,7 +25,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -110,50 +106,40 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
         if (world != null) {
             if (!world.isRemote) {
                 if (this.internalBuffer < this.maxCapacity) {
-
                     this.inputValue = this.calculateInputValue(this.world);
-
                     if (this.workTime >= this.maxWorkTime) {
                         this.internalBuffer += this.inputValue;
-                        this.checkAndSendEnergyIFPossible(this.world);
+                        this.doEnergyLogic(this.world, this.tileInv.getStackInSlot(0).isEmpty());
                         this.workTime = 0;
                     } else {
                         this.workTime++;
                     }
-
-
-                    if (!tileInv.getStackInSlot(0).isEmpty())
-                        this.getEnergyStorage().extractEnergy(this.outputValue, false);
                 }
             }
         }
     }
 
-    private void checkAndSendEnergyIFPossible(@Nonnull World world) {
-        for (Direction d : Direction.values()) {
-            TileEntity tile = world.getTileEntity(pos.offset(d));
-            if (tile != null) {
-                if (tile.getCapability(CapabilityEnergy.ENERGY).isPresent()) {
-                    if (ModList.get().isLoaded(MekanismAPI.MEKANISM_MODID)) {
-                        if (tile instanceof IMekanismStrictEnergyHandler) {
-                            IMekanismStrictEnergyHandler energyHandler = (IMekanismStrictEnergyHandler) tile;
-                            if (this.getEnergyStorage().canExtract()) {
-                                this.getEnergyStorage().extractEnergy(this.outputValue, false);
-                                energyHandler.insertEnergy(FloatingLong.create(this.outputValue), Action.EXECUTE);
-                                this.markDirty();
-                            }
-                        }
-                    } else {
-                        tile.getCapability(CapabilityEnergy.ENERGY).ifPresent((cap) -> {
-                            if (cap.canReceive() && this.getEnergyStorage().canExtract()) {
-                                this.getEnergyStorage().extractEnergy(this.outputValue, false);
-                                cap.receiveEnergy(this.outputValue, false);
-                                this.markDirty();
-                            }
-                        });
-                    }
+    private void doEnergyLogic(@Nonnull World world, boolean hasItemInSlot) {
+        TileEntity tile = world.getTileEntity(pos.down());
+        if (tile != null) {
+            tile.getCapability(CapabilityEnergy.ENERGY, Direction.DOWN.getOpposite()).ifPresent((tileCap)->{
+                if (tileCap.canReceive()) {
+                    int extractValue = this.getEnergyStorage().extractEnergy(this.outputValue, false);
+                    tileCap.receiveEnergy(extractValue, false);
+                    this.markDirty();
                 }
-            }
+            });
+        }
+
+        if(hasItemInSlot){
+            ItemStack stack = this.tileInv.getStackInSlot(0);
+            stack.getCapability(CapabilityEnergy.ENERGY).ifPresent((stackCap)->{
+                if(stackCap.canReceive()){
+                    int extractValue = this.getEnergyStorage().extractEnergy(this.outputValue, false);
+                    stackCap.receiveEnergy(extractValue, false);
+                    this.markDirty();
+                }
+            });
         }
     }
 
@@ -177,15 +163,15 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
-        if (cap == CapabilityEnergy.ENERGY) {
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side) {
+        if (cap == CapabilityEnergy.ENERGY && side == Direction.DOWN) {
             return ENERGY_STORAGE.cast();
         }
-        return super.getCapability(cap);
+        return super.getCapability(cap, side);
     }
 
     public IEnergyStorage getEnergyStorage() {
-        return this.getCapability(CapabilityEnergy.ENERGY).orElseThrow(NullPointerException::new);
+        return this.getCapability(CapabilityEnergy.ENERGY, Direction.DOWN).orElseThrow(NullPointerException::new);
     }
 
     @Nonnull
@@ -198,10 +184,11 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
 
             @Override
             public int extractEnergy(int maxExtract, boolean simulate) {
-                if (!this.canExtract()) return 0;
-                int result = Math.max((this.getEnergyStored() - maxExtract), 0);
-                if (!simulate) WoodenSolarPanelTileEntity.this.setInternalBuffer(result);
-                return result;
+                int sim = this.getEnergyStored() - maxExtract;
+                if (!simulate) {
+                    setInternalBuffer(sim >= 0 ? sim : this.getEnergyStored());
+                }
+                return sim >= 0 ? sim : 0;
             }
 
             @Override
