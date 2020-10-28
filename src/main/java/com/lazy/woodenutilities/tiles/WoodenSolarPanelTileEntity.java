@@ -230,6 +230,6 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
 
     @Override
     public void onChunkUnloaded() {
-        invalidateCaps();
+        super.invalidateCaps();
     }
 }
