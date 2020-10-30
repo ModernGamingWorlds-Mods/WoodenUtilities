@@ -122,28 +122,26 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
     private void doEnergyLogic(@Nonnull World world, boolean hasItemInSlot) {
         TileEntity tile = world.getTileEntity(pos.down());
         if (tile != null) {
-            tile.getCapability(CapabilityEnergy.ENERGY, Direction.DOWN.getOpposite()).ifPresent((tileCap)->{
-                if (tileCap.canReceive()) {
-                    int extractValue = this.getEnergyStorage().extractEnergy(this.outputValue, false);
-                    tileCap.receiveEnergy(extractValue, false);
-                    this.markDirty();
-                }
-            });
+            tile.getCapability(CapabilityEnergy.ENERGY, Direction.DOWN.getOpposite()).ifPresent(this::insertEnergy);
         }
 
         if(hasItemInSlot){
             ItemStack stack = this.tileInv.getStackInSlot(0);
-            stack.getCapability(CapabilityEnergy.ENERGY).ifPresent((stackCap)->{
-                if(stackCap.canReceive()){
-                    int extractValue = this.getEnergyStorage().extractEnergy(this.outputValue, false);
-                    stackCap.receiveEnergy(extractValue, false);
-                    this.markDirty();
-                }
-            });
+            stack.getCapability(CapabilityEnergy.ENERGY).ifPresent(this::insertEnergy);
+        }
+    }
+
+    private void insertEnergy(IEnergyStorage storage){
+        if (storage.canReceive()) {
+            int extractValue = this.getEnergyStorage().extractEnergy(this.outputValue, false);
+            int insertValue = storage.receiveEnergy(extractValue, true);
+            storage.receiveEnergy(insertValue, false);
+            this.markDirty();
         }
     }
 
     public int calculateInputValue(@Nonnull World world) {
+        if(this.internalBuffer >= this.maxCapacity) return 0;
         if (world.getDimensionType().hasSkyLight()) {
             int i = world.getLightFor(LightType.SKY, this.pos) - world.getSkylightSubtracted();
             float f = world.getCelestialAngleRadians(1.0F);
@@ -188,7 +186,7 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
                 if (!simulate) {
                     setInternalBuffer(sim >= 0 ? sim : this.getEnergyStored());
                 }
-                return sim >= 0 ? sim : 0;
+                return sim >= 0 ? maxExtract : 0;
             }
 
             @Override
@@ -229,7 +227,8 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
     }
 
     @Override
-    public void onChunkUnloaded() {
+    protected void invalidateCaps() {
         super.invalidateCaps();
+        ENERGY_STORAGE.invalidate();
     }
 }
