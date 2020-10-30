@@ -3,7 +3,7 @@ loaderVersion="[34,)" #mandatory (26 is current forge version)
 license="MIT"
 [[mods]] #mandatory
 modId="woodenutilities" #mandatory
-version="1.0.2" #mandatory
+version="1.0.3" #mandatory
 displayName="Wooden Utilities" #mandatory
 displayURL="https://www.curseforge.com/minecraft/mc-mods/wooden-utilities" #optional
 logoFile="logo.png" #optional
