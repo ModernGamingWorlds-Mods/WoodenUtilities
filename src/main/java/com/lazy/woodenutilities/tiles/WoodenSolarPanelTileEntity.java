@@ -3,6 +3,7 @@ package com.lazy.woodenutilities.tiles;
 import com.lazy.woodenutilities.Configs;
 import com.lazy.woodenutilities.content.ModTiles;
 import com.lazy.woodenutilities.inventory.containers.WoodenSolarPanelContainer;
+import com.lazy.woodenutilities.util.InvSaver;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,6 +12,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -89,6 +91,7 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
         nbt.putInt(TAG_INPUT, this.inputValue);
         nbt.putInt(TAG_OUTPUT, this.outputValue);
         nbt.putInt(TAG_MAX_CAPACITY, this.maxCapacity);
+        InvSaver.saveSingleItemInventory(compound, this.getChargeSlot());
         return nbt;
     }
 
@@ -99,6 +102,7 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
         this.inputValue = compound.getInt(TAG_INPUT);
         this.outputValue = compound.getInt(TAG_OUTPUT);
         this.maxCapacity = compound.getInt(TAG_MAX_CAPACITY);
+        this.tileInv.setInventorySlotContents(0, InvSaver.loadSingleItemInventory(compound));
     }
 
     @Override
@@ -132,7 +136,7 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
         }
     }
 
-    private void insertEnergy(IEnergyStorage storage){
+    private void insertEnergy(IEnergyStorage storage) {
         if (storage.canReceive()) {
             int extractValue = this.getEnergyStorage().extractEnergy(this.outputValue, false);
             int insertValue = storage.receiveEnergy(extractValue, true);
@@ -142,7 +146,7 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
     }
 
     public int calculateInputValue(@Nonnull World world) {
-        if(this.internalBuffer >= this.maxCapacity) return 0;
+        if (this.internalBuffer >= this.maxCapacity) return 0;
         if (world.getDimensionType().hasSkyLight()) {
             int i = world.getLightFor(LightType.SKY, this.pos) - world.getSkylightSubtracted();
             float f = world.getCelestialAngleRadians(1.0F);
