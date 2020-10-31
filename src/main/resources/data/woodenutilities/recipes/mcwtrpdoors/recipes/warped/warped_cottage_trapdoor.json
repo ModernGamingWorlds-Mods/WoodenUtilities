@@ -1,9 +1,9 @@
 {
     "type": "woodenutilities:woodcutting",
-    "modid": "mcwdoors",
+    "modid": "mcwtrpdoors",
     "ingredient": {
         "item": "minecraft:warped_planks"
     },
-    "result": "mcwdoors:warped_mystic_door",
+    "result": "mcwtrpdoors:warped_cottage_trapdoor",
     "count": 1
 }

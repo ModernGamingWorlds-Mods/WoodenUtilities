@@ -1,9 +1,9 @@
 {
     "type": "woodenutilities:woodcutting",
-    "modid": "mcwdoors",
+    "modid": "mcwtrpdoors",
     "ingredient": {
         "item": "minecraft:spruce_planks"
     },
-    "result": "mcwdoors:spruce_cottage_door",
+    "result": "mcwtrpdoors:spruce_glass_trapdoor",
     "count": 1
 }
