@@ -4,6 +4,6 @@
     "ingredient": {
         "item": "minecraft:warped_planks"
     },
-    "result": "mcwdoors:warped_mystic_door",
+    "result": "mcwdoors:warped_classic_door",
     "count": 1
 }
