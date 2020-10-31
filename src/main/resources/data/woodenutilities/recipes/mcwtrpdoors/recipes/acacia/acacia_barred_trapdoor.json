@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwtrpdoors",
+    "ingredient": {
+        "item": "minecraft:acacia_planks"
+    },
+    "result": "mcwtrpdoors:acacia_barred_trapdoor",
+    "count": 1
+}

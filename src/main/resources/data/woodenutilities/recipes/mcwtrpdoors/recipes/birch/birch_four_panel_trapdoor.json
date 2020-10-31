@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwtrpdoors",
+    "ingredient": {
+        "item": "minecraft:birch_planks"
+    },
+    "result": "mcwtrpdoors:birch_four_panel_trapdoor",
+    "count": 1
+}

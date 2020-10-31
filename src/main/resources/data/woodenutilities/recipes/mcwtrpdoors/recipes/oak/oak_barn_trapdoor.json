@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwtrpdoor",
+    "ingredient": {
+        "item": "minecraft:oak_planks"
+    },
+    "result": "mcwtrpdoors:oak_barn_trapdoor",
+    "count": 1
+}

@@ -1,0 +1,9 @@
+{
+    "type": "woodenutilities:woodcutting",
+    "modid": "mcwtrpdoors",
+    "ingredient": {
+        "item": "minecraft:dark_oak_planks"
+    },
+    "result": "mcwtrpdoors:dark_oak_four_panel_trapdoor",
+    "count": 1
+}
