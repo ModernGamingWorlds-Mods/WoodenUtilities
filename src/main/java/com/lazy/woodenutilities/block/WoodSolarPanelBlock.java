@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -44,6 +45,16 @@ public class WoodSolarPanelBlock extends BasicWoodBlock {
             }
             return ActionResultType.SUCCESS;
         }
+    }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBlockHarvested(worldIn, pos, state, player);
+        InventoryHelper.dropInventoryItems(worldIn, pos, this.getTileEntity(worldIn, pos).tileInv);
+    }
+
+    public WoodenSolarPanelTileEntity getTileEntity(World world, BlockPos pos) {
+        return (WoodenSolarPanelTileEntity) world.getTileEntity(pos);
     }
 
     @Override
