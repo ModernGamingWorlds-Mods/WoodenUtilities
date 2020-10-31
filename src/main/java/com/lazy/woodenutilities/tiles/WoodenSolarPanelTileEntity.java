@@ -109,7 +109,8 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
                     this.inputValue = this.calculateInputValue(this.world);
                     if (this.workTime >= this.maxWorkTime) {
                         this.internalBuffer += this.inputValue;
-                        this.doEnergyLogic(this.world, this.tileInv.getStackInSlot(0).isEmpty());
+                        boolean canCharge = this.getChargeSlot().getItem() != Items.AIR && this.getChargeSlot().getCapability(CapabilityEnergy.ENERGY).isPresent();
+                        this.doEnergyLogic(this.world, canCharge);
                         this.workTime = 0;
                     } else {
                         this.workTime++;
@@ -119,13 +120,13 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
         }
     }
 
-    private void doEnergyLogic(@Nonnull World world, boolean hasItemInSlot) {
+    private void doEnergyLogic(@Nonnull World world, boolean canCharge) {
         TileEntity tile = world.getTileEntity(pos.down());
         if (tile != null) {
             tile.getCapability(CapabilityEnergy.ENERGY, Direction.DOWN.getOpposite()).ifPresent(this::insertEnergy);
         }
 
-        if(hasItemInSlot){
+        if (canCharge) {
             ItemStack stack = this.tileInv.getStackInSlot(0);
             stack.getCapability(CapabilityEnergy.ENERGY).ifPresent(this::insertEnergy);
         }
@@ -213,6 +214,10 @@ public class WoodenSolarPanelTileEntity extends TileEntity implements ITickableT
 
     public void setInternalBuffer(int internalBuffer) {
         this.internalBuffer = internalBuffer;
+    }
+
+    private ItemStack getChargeSlot() {
+        return this.tileInv.getStackInSlot(0);
     }
 
     @Override
