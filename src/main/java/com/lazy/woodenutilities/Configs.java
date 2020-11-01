@@ -23,6 +23,8 @@ public class Configs {
 
     public static ForgeConfigSpec.DoubleValue TNT_POWER;
 
+    public static ForgeConfigSpec.DoubleValue RING_LUMBERJACK_SPEED;
+
     static {
         COMMON_BUILDER.comment("MOD: WoodenUtilities\n Configuration File");
 
@@ -43,6 +45,10 @@ public class Configs {
 
         COMMON_BUILDER.push("Wooden Tnt Configuration");
         TNT_POWER = COMMON_BUILDER.comment("Explosion damage.").defineInRange("tnt_power", 1.0D, 1.0D, Double.MAX_VALUE);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.push("Wooden Rings Configuration (Don't change if the current modpack doesn't contain Baubles)");
+        RING_LUMBERJACK_SPEED = COMMON_BUILDER.comment("Lumberjack speed modifier.").defineInRange("ring_lumberjack_speed", 10.0D, 1.0D, Double.MAX_VALUE);
         COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();
