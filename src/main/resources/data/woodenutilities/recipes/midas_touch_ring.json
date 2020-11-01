@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#O#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "woodenutilities:wooden_plate"
+    },
+    "O": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:midas_touch_ring",
+    "count": 1
+  }
+}

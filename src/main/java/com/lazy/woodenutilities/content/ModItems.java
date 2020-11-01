@@ -4,7 +4,7 @@ import com.lazy.woodenutilities.WoodenUtilities;
 import com.lazy.woodenutilities.item.BasicWoodItem;
 import com.lazy.woodenutilities.item.WoodenBackpack;
 import com.lazy.woodenutilities.item.WoodenShearsItem;
-import com.lazy.woodenutilities.item.ring.WoodenRingItem;
+import com.lazy.woodenutilities.item.WoodenRingItem;
 import com.lazy.woodenutilities.util.WoodArmorMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -28,6 +28,7 @@ public class ModItems {
     public static RegistryObject<BasicWoodItem> WOODEN_PLATE;
     public static RegistryObject<WoodenBackpack> WOODEN_BACKPACK;
     public static RegistryObject<WoodenRingItem> THE_LUMBERJACK;
+    public static RegistryObject<WoodenRingItem> MIDAS_TOUCH;
 
     public static void init(IEventBus bus) {
         WOODEN_PLATE = ITEMS.register("wooden_plate", BasicWoodItem::new);
@@ -53,5 +54,6 @@ public class ModItems {
 
     private static void registerRings() {
         THE_LUMBERJACK = ITEMS.register("the_lumberjack_ring", () -> new WoodenRingItem(Collections.singletonList("Make wood look like butter.")));
+        MIDAS_TOUCH = ITEMS.register("midas_touch_ring", () -> new WoodenRingItem(Collections.singletonList("Transforms everything in §mgold§r wood.")));
     }
 }
