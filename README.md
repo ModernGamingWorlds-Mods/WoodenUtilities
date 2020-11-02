@@ -26,6 +26,10 @@
   <a href="https://opensource.org/licenses/MIT">
     <img alt="Repository issues" src="https://img.shields.io/badge/License-MIT-yellow.svg">
   </a>
+  
+  <a href="https://twitter.com/nesslazy_">
+    <img alt="Repository issues" src="https://img.shields.io/twitter/follow/nesslazy_?label=pls%20follow&style=social">
+  </a>
 </p>
 
 
