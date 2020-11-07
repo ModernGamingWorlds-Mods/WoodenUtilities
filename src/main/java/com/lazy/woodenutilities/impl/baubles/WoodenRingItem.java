@@ -1,4 +1,4 @@
-package com.lazy.woodenutilities.item;
+package com.lazy.woodenutilities.impl.baubles;
 
 import com.lazy.baubles.api.BaubleType;
 import com.lazy.baubles.api.BaublesApi;
@@ -6,9 +6,8 @@ import com.lazy.baubles.api.IBauble;
 import com.lazy.baubles.api.cap.IBaublesItemHandler;
 import com.lazy.woodenutilities.WoodenUtilities;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -23,10 +22,12 @@ import java.util.List;
 public class WoodenRingItem extends Item implements IBauble {
 
     private final List<String> tooltips;
+    private IRingWorn iRingWorn;
 
-    public WoodenRingItem(List<String> tooltips) {
+    public WoodenRingItem(List<String> tooltips, @Nullable IRingWorn iRingWorn) {
         super(new Properties().group(WoodenUtilities.WOODEN_UTILITIES).maxStackSize(1));
         this.tooltips = tooltips;
+        this.iRingWorn = iRingWorn;
     }
 
     @Override
@@ -40,8 +41,8 @@ public class WoodenRingItem extends Item implements IBauble {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         IBaublesItemHandler itemHandler = BaublesApi.getBaublesHandler(playerIn).orElseThrow(NullPointerException::new);
-        if(itemHandler.getStackInSlot(1).isEmpty() || itemHandler.getStackInSlot(2).isEmpty()){
-            if(itemHandler.getStackInSlot(1).isEmpty()){
+        if (itemHandler.getStackInSlot(1).isEmpty() || itemHandler.getStackInSlot(2).isEmpty()) {
+            if (itemHandler.getStackInSlot(1).isEmpty()) {
                 itemHandler.setStackInSlot(1, itemstack.copy());
             } else {
                 itemHandler.setStackInSlot(2, itemstack.copy());
@@ -51,6 +52,13 @@ public class WoodenRingItem extends Item implements IBauble {
         } else {
             return ActionResult.resultFail(itemstack);
         }
+    }
+
+    @Override
+    public void onWornTick(LivingEntity player, ItemStack stack) {
+        if (iRingWorn == null) return;
+        if (!(player instanceof PlayerEntity)) return;
+        this.iRingWorn.onWorn((PlayerEntity) player, stack);
     }
 
     @Override
