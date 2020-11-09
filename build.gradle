@@ -75,4 +75,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${modMcVersion}-${modForgeVersion}"
 
     compileOnly fg.deobf("mezz.jei:jei-${modMcVersion}:${jei_version}:api")
+
+    //For testing..
+    //compile fg.deobf("curse.maven:baubles-reborn:3066859")
 }

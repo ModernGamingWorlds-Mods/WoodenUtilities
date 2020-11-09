@@ -25,8 +25,12 @@ public class Configs {
 
     public static ForgeConfigSpec.DoubleValue RING_LUMBERJACK_SPEED;
 
+    public static ForgeConfigSpec.BooleanValue SHOW_BAUBLES_MSG;
+
     static {
         COMMON_BUILDER.comment("MOD: WoodenUtilities\n Configuration File");
+
+        SHOW_BAUBLES_MSG = COMMON_BUILDER.comment("Show startup Baubles message.").define("baubles_msg", true);
 
         COMMON_BUILDER.push("Woodcutter Configuration");
         NEED_AXE = COMMON_BUILDER.comment("When enabled the woodcutter requires some sort of axe to work.").define("need_axe", true);

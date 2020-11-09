@@ -3,7 +3,6 @@ package com.lazy.woodenutilities.impl.baubles;
 import com.lazy.baubles.api.BaublesApi;
 import com.lazy.woodenutilities.Configs;
 import com.lazy.woodenutilities.content.ModItems;
-import com.lazy.woodenutilities.item.WoodenRingItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
@@ -37,7 +36,7 @@ public class BaublesRingLogic {
         PlayerEntity playerEntity = event.getPlayer();
 
         if (isRingEquipped(playerEntity, ModItems.THE_LUMBERJACK.get())) {
-            if (state.getMaterial() == Material.WOOD){
+            if (state.getMaterial() == Material.WOOD) {
                 event.setNewSpeed(BigDecimal.valueOf(Configs.RING_LUMBERJACK_SPEED.get()).floatValue());
             }
         }
