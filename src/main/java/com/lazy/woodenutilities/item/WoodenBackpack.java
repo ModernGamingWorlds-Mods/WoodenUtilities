@@ -12,6 +12,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
@@ -38,7 +39,7 @@ public class WoodenBackpack extends BasicWoodItem implements INamedContainerProv
         }
         addContentToInv(stacks);
         playerIn.openContainer(this);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return new ActionResult<>(ActionResultType.CONSUME, ItemStack.EMPTY);
     }
 
     public void addContentToInv(NonNullList<ItemStack> stacks) {
@@ -69,6 +70,6 @@ public class WoodenBackpack extends BasicWoodItem implements INamedContainerProv
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity p_createMenu_3_) {
-        return new WoodenBackpackContainer(id, playerInventory, self);
+        return new WoodenBackpackContainer(id, playerInventory, self, new ItemStack(this));
     }
 }
