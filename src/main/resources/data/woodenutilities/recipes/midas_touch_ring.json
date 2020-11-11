@@ -10,7 +10,7 @@
       "item": "woodenutilities:wooden_plate"
     },
     "O": {
-      "item": "minecraft:gold_block"
+      "tag": "forge:storage_blocks/gold"
     }
   },
   "result": {
