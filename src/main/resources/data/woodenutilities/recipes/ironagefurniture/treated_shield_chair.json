@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "ironagefurniture",
-    "ingredient": {
-        "item": "minecraft:shield"
-    },
-    "result": "ironagefurniture:chair_wood_ironage_shield_immersiveengineering_treated_wood",
-    "count": 1
-}

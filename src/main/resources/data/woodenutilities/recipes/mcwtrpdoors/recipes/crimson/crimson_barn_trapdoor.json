@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "mcwtrpdoor",
-    "ingredient": {
-        "item": "minecraft:crimson_planks"
-    },
-    "result": "mcwtrpdoors:crimson_barn_trapdoor",
-    "count": 1
-}

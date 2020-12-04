@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "mcwbridges",
-    "ingredient": {
-        "item": "minecraft:dark_oak_planks"
-    },
-    "result": "mcwbridges:dark_oak_log_bridge_middle",
-    "count": 2
-}

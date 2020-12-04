@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "immersiveengineering",
-    "ingredient": {
-        "tag": "forge:treated_wood"
-    },
-    "result": "immersiveengineering:stick_treated",
-    "count": 1
-}

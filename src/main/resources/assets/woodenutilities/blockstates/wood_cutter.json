@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "woodenutilities:block/wood_cutter" },
-    "facing=south": { "model": "woodenutilities:block/wood_cutter", "y": 180 },
-    "facing=west": { "model": "woodenutilities:block/wood_cutter", "y": 270 },
-    "facing=east": { "model": "woodenutilities:block/wood_cutter", "y": 90 }
-  }
-}

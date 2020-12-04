@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "mcwdoors",
-    "ingredient": {
-        "item": "minecraft:dark_oak_planks"
-    },
-    "result": "mcwdoors:dark_oak_nether_door",
-    "count": 1
-}

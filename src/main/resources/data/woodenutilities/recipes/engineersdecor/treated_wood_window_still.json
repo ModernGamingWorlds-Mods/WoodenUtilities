@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "engineersdecor",
-    "ingredient": {
-        "item": "engineersdecor:old_industrial_wood_slab"
-    },
-    "result": "engineersdecor:treated_wood_windowsill",
-    "count": 1
-}

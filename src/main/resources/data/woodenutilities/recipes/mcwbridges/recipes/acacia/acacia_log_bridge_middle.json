@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "mcwbridges",
-    "ingredient": {
-        "item": "minecraft:acacia_planks"
-    },
-    "result": "mcwbridges:acacia_log_bridge_middle",
-    "count": 2
-}

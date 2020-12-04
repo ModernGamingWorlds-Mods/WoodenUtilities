@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "mcwdoors",
-    "ingredient": {
-        "item": "minecraft:birch_planks"
-    },
-    "result": "mcwdoors:birch_beach_door",
-    "count": 1
-}

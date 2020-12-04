@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "facing=down": { "model": "woodenutilities:block/wooden_hopper" },
-    "facing=north": { "model": "woodenutilities:block/wooden_hopper_side" },
-    "facing=south": { "model": "woodenutilities:block/wooden_hopper_side", "y": 180 },
-    "facing=west": { "model": "woodenutilities:block/wooden_hopper_side", "y": 270 },
-    "facing=east": { "model": "woodenutilities:block/wooden_hopper_side", "y": 90 }
-  }
-}

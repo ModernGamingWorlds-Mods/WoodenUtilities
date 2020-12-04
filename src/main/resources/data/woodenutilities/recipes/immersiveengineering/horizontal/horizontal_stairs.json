@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "immersiveengineering",
-    "ingredient": {
-        "item": "immersiveengineering:treated_wood_horizontal"
-    },
-    "result": "immersiveengineering:stairs_treated_wood_horizontal",
-    "count": 1
-}

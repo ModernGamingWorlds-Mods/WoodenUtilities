@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "mcwbridges",
-    "ingredient": {
-        "item": "minecraft:warped_planks"
-    },
-    "result": "mcwbridges:warped_log_bridge_middle",
-    "count": 2
-}

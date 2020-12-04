@@ -1,9 +1,0 @@
-{
-    "type": "woodenutilities:woodcutting",
-    "modid": "mcwdoors",
-    "ingredient": {
-        "item": "minecraft:warped_planks"
-    },
-    "result": "mcwdoors:warped_japanese_door",
-    "count": 1
-}
