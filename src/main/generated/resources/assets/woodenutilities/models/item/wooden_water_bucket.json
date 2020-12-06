@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "woodenutilities:items/wooden_bucket"
+  }
+}

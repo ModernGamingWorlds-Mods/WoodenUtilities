@@ -23,5 +23,7 @@ public class WoodenItemModelProvider extends ItemModelProvider {
             String s = Objects.requireNonNull(entry.getValue().get().getRegistryName()).toString();
             this.getBuilder(s).parent(new ModelFile.UncheckedModelFile("item/handheld")).texture("layer0", "items/wooden_bucket");
         }
+        this.getBuilder(Objects.requireNonNull(WoodenItems.WOODEN_BUCKET.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile("item/handheld")).texture("layer0", "items/wooden_bucket");
+        this.getBuilder(Objects.requireNonNull(WoodenItems.WOODEN_PLATE.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", "items/wooden_plate");
     }
 }
