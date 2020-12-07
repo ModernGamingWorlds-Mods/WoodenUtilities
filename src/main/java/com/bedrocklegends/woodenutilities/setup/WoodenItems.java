@@ -1,9 +1,11 @@
 package com.bedrocklegends.woodenutilities.setup;
 
 import com.bedrocklegends.woodenutilities.WoodenUtilities;
+import com.bedrocklegends.woodenutilities.block.WoodenTankBlock;
 import com.bedrocklegends.woodenutilities.item.WoodenBucketItem;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -30,6 +32,8 @@ public class WoodenItems {
 
     public static final RegistryObject<Item> WOODEN_BUCKET = ITEMS.register("wooden_bucket", () -> new WoodenBucketItem(() -> Fluids.EMPTY, (new Item.Properties()).maxStackSize(16).group(WOODEN_UTILITIES_TAB)));
     public static final RegistryObject<Item> WOODEN_PLATE = ITEMS.register("wooden_plate", () -> new Item(new Item.Properties().group(WOODEN_UTILITIES_TAB)));
+
+    public static final RegistryObject<Item> WOODEN_TANK = ITEMS.register("wooden_tank", () -> new BlockItem(WoodenBlocks.WOODEN_TANK.get(), new Item.Properties().group(WOODEN_UTILITIES_TAB)));
 
     static {
         for (Fluid fluid : ForgeRegistries.FLUIDS) {
