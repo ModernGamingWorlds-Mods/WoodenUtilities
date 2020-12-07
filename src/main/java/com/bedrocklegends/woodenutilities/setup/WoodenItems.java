@@ -3,10 +3,7 @@ package com.bedrocklegends.woodenutilities.setup;
 import com.bedrocklegends.woodenutilities.WoodenUtilities;
 import com.bedrocklegends.woodenutilities.item.WoodenBucketItem;
 import com.bedrocklegends.woodenutilities.item.WoodenRingItem;
-import com.bedrocklegends.woodenutilities.item.ring.EffectRingItem;
-import com.bedrocklegends.woodenutilities.item.ring.FlightRingItem;
-import com.bedrocklegends.woodenutilities.item.ring.MagnetRingItem;
-import com.bedrocklegends.woodenutilities.item.ring.RepairRingItem;
+import com.bedrocklegends.woodenutilities.item.ring.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -39,13 +36,13 @@ public class WoodenItems {
     public static final RegistryObject<Item> WOODEN_PLATE = ITEMS.register("wooden_plate", () -> new Item(new Item.Properties().group(WOODEN_UTILITIES_TAB)));
 
     //Rings
-    public static final RegistryObject<Item> NIGHT_VISION = ITEMS.register("wooden_ring_night_vision", () -> new EffectRingItem(new EffectInstance(Effects.NIGHT_VISION, 999999, 4)));
-    public static final RegistryObject<Item> HASTE = ITEMS.register("wooden_ring_haste", () -> new EffectRingItem(new EffectInstance(Effects.HASTE, 999999, 4)));
-    public static final RegistryObject<Item> LUMBERJACK = ITEMS.register("lumberjack", WoodenRingItem::new);
-    public static final RegistryObject<Item> MIDAS_TOUCH = ITEMS.register("midastouch", WoodenRingItem::new);
-    public static final RegistryObject<Item> FLIGHT = ITEMS.register("wooden_ring_flight", FlightRingItem::new);
-    public static final RegistryObject<Item> MAGNET = ITEMS.register("magnet_ring", MagnetRingItem::new);
-    public static final RegistryObject<Item> REPAIR = ITEMS.register("wooden_ring_repair", RepairRingItem::new);
+    public static final RegistryObject<Item> NO_MO_DARKNESS_RING = ITEMS.register("no_mo_darkness", NoMoDarknessRing::new);
+    public static final RegistryObject<Item> PRECIOUS_TIME_RING = ITEMS.register("precious_time_ring", PreciousTimeRing::new);
+    public static final RegistryObject<Item> THE_LUMBERJACK_RING = ITEMS.register("the_lumberjack", TheLumberjackRing::new);
+    public static final RegistryObject<Item> MIDAS_TOUCH_RING = ITEMS.register("midas_touch", MidasTouchRing::new);
+    public static final RegistryObject<Item> FLIGHT_RING = ITEMS.register("flight_ring", FlightRingItem::new);
+    public static final RegistryObject<Item> MAGNET_RING = ITEMS.register("magnet_ring", MagnetRingItem::new);
+    public static final RegistryObject<Item> FORGED_RING = ITEMS.register("forged_ring", ForgedRingItem::new);
 
     static {
         for (Fluid fluid : ForgeRegistries.FLUIDS) {

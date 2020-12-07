@@ -7,13 +7,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -36,13 +33,13 @@ public class BaublesRingLogic {
         BlockState state = event.getState();
         PlayerEntity playerEntity = event.getPlayer();
 
-        if (BaublesAPI.isBaubleEquipped(playerEntity, WoodenItems.LUMBERJACK.get()) != -1) {
+        if (BaublesAPI.isBaubleEquipped(playerEntity, WoodenItems.THE_LUMBERJACK_RING.get()) != -1) {
             if (state.getMaterial() == Material.WOOD) {
                 //TODO: Add config
                 event.setNewSpeed(10f);
             }
         }
-        if (BaublesAPI.isBaubleEquipped(playerEntity, WoodenItems.MIDAS_TOUCH.get()) != -1) {
+        if (BaublesAPI.isBaubleEquipped(playerEntity, WoodenItems.MIDAS_TOUCH_RING.get()) != -1) {
             onUseMidasTouch(event);
         }
     }
@@ -66,7 +63,7 @@ public class BaublesRingLogic {
                         .filter(block -> block.getRegistryName() != null)
                         .filter(block -> block.getRegistryName().getPath().endsWith("_log") || block.getRegistryName().getPath().contains("_planks"))
                         .collect(Collectors.toList());
-                if (BaublesAPI.isBaubleEquipped(playerEntity, WoodenItems.MIDAS_TOUCH.get()) != -1) {
+                if (BaublesAPI.isBaubleEquipped(playerEntity, WoodenItems.MIDAS_TOUCH_RING.get()) != -1) {
                     int rand = world.rand.nextInt(woodBlocks.size());
                     world.setBlockState(pos, woodBlocks.get(rand).getDefaultState(), 4);
                     event.setCanceled(true);
