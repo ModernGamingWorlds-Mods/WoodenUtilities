@@ -1,5 +1,6 @@
 package com.bedrocklegends.woodenutilities;
 
+import com.bedrocklegends.woodenutilities.config.WoodenConfig;
 import com.bedrocklegends.woodenutilities.setup.WoodenBlocks;
 import com.bedrocklegends.woodenutilities.setup.WoodenItems;
 import com.bedrocklegends.woodenutilities.setup.WoodenTiles;
@@ -13,8 +14,9 @@ public class WoodenUtilities {
 
 
     public WoodenUtilities() {
-        WoodenBlocks.register();
+        WoodenConfig.init();
         WoodenItems.register();
+        WoodenBlocks.register();
         WoodenTiles.register();
     }
 }

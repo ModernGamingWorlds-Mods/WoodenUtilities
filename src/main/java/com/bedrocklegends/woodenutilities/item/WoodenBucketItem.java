@@ -26,6 +26,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class WoodenBucketItem extends Item {
