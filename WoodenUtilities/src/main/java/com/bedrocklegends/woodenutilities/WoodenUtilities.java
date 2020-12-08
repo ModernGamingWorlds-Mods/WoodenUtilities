@@ -4,9 +4,7 @@ import com.bedrocklegends.woodenutilities.config.WoodenConfig;
 import com.bedrocklegends.woodenutilities.setup.WoodenBlocks;
 import com.bedrocklegends.woodenutilities.setup.WoodenItems;
 import com.bedrocklegends.woodenutilities.setup.WoodenTiles;
-import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(WoodenUtilities.ID)
 public class WoodenUtilities {
