@@ -24,13 +24,6 @@ import java.util.Objects;
 
 public class WoodenItems {
 
-    public static final ItemGroup WOODEN_UTILITIES_TAB = new ItemGroup("") {
-        @Override
-        public ItemStack createIcon() {
-            return new ItemStack(WoodenItems.WOODEN_PLATE.get());
-        }
-    };
-
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, WoodenUtilities.ID);
     public static final Map<String, RegistryObject<Item>> BUCKETS = new HashMap<>();
 
@@ -46,7 +39,7 @@ public class WoodenItems {
     public static final RegistryObject<Item> MAGNET_RING = ITEMS.register("magnet_ring", MagnetRingItem::new);
     public static final RegistryObject<Item> FORGED_RING = ITEMS.register("forged_ring", ForgedRingItem::new);
 
-    public static final RegistryObject<Item> WOODEN_TANK = ITEMS.register("wooden_tank", () -> new BlockItem(WoodenBlocks.WOODEN_TANK.get(), new Item.Properties().group(WOODEN_UTILITIES_TAB)));
+    public static final RegistryObject<Item> WOODEN_TANK = ITEMS.register("wooden_tank", () -> new BlockItem(WoodenBlocks.WOODEN_TANK.get(), new Item.Properties().group(WoodenItemGroup.INSTANCE)));
 
     static {
         for (Fluid fluid : ForgeRegistries.FLUIDS) {

@@ -1,5 +1,6 @@
 package com.bedrocklegends.woodenutilities.item;
 
+import com.bedrocklegends.woodenutilities.setup.WoodenItemGroup;
 import com.bedrocklegends.woodenutilities.setup.WoodenItems;
 import com.lazy.baubles.api.bauble.BaubleType;
 import com.lazy.baubles.api.bauble.IBauble;
@@ -13,7 +14,7 @@ public class WoodenRingItem extends Item implements IBauble {
     }
 
     public WoodenRingItem() {
-        this(new Properties().maxStackSize(1).group(WoodenItems.WOODEN_UTILITIES_TAB));
+        this(new Properties().maxStackSize(1).group(WoodenItemGroup.INSTANCE));
     }
 
     @Override
