@@ -6,6 +6,8 @@ Wooden Utilities is a mod design for Minecraft 1.16 and above that adds many dif
 - https://www.curseforge.com/minecraft/mc-mods/wooden-utilities
 - https://www.curseforge.com/minecraft/mc-mods/wooden-utilities-transport
 
-- Discord - https://discord.gg/kvagXuP
+- Discord 
+- https://discord.gg/kvagXuP
 
-+ Issues - https://github.com/BedrockLegends-Mods/WoodenUtilities/issues
++ Issues 
+- https://github.com/BedrockLegends-Mods/WoodenUtilities/issues
