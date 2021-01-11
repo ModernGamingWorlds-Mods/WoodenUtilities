@@ -1,9 +1,7 @@
 package com.bedrocklegends.woodenutilities.setup;
 
-import com.bedrocklegends.woodenutilities.config.holder.CommonConfigHolder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 
 public class WoodenItemGroup extends ItemGroup {
 
