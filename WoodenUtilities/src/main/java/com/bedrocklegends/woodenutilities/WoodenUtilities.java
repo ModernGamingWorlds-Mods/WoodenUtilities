@@ -8,6 +8,10 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod(WoodenUtilities.ID)
 public class WoodenUtilities {
+    /**
+     * @deprecated Use the constant in the WoodenConstants class
+     */
+    @Deprecated
     public static final String ID = "woodenutilities";
 
 
