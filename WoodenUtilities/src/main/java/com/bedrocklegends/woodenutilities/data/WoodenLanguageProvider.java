@@ -14,5 +14,7 @@ public class WoodenLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         this.add(WoodenBlocks.WOODEN_TANK.get(), "Wooden Tank");
+        this.add("fluid.woodenutilities.resin", "Resin");
+        this.add(WoodenItems.RESIN_BUCKET.get(), "Resin Bucket");
     }
 }
