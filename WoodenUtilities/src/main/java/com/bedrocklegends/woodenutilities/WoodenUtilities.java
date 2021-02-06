@@ -2,6 +2,7 @@ package com.bedrocklegends.woodenutilities;
 
 import com.bedrocklegends.woodenutilities.config.WoodenConfig;
 import com.bedrocklegends.woodenutilities.setup.WoodenBlocks;
+import com.bedrocklegends.woodenutilities.setup.WoodenFluids;
 import com.bedrocklegends.woodenutilities.setup.WoodenItems;
 import com.bedrocklegends.woodenutilities.setup.WoodenTiles;
 import net.minecraftforge.fml.common.Mod;
@@ -16,5 +17,6 @@ public class WoodenUtilities {
         WoodenItems.register();
         WoodenBlocks.register();
         WoodenTiles.register();
+        WoodenFluids.register();
     }
 }
