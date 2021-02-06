@@ -5,6 +5,7 @@ import com.bedrocklegends.woodenutilities.item.WoodenBucketItem;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -27,6 +28,10 @@ public class WoodenItems {
     public static final RegistryObject<Item> WOODEN_PLATE = ITEMS
         .register("wooden_plate", () -> new Item(new Item.Properties().group(WoodenItemGroup.INSTANCE)));
 
+    //Universal Resin Bucket
+    public static final RegistryObject<Item> RESIN_BUCKET = ITEMS.register("resin_bucket",
+            ()-> new BucketItem(() -> WoodenFluids.RESIN.get(), (new Item.Properties()).maxStackSize(16).group(WoodenItemGroup.INSTANCE)));
+
     //Rings
     public static final RegistryObject<Item> WOODEN_TANK = ITEMS
         .register("wooden_tank", () -> new BlockItem(WoodenBlocks.WOODEN_TANK.get(), new Item.Properties()
@@ -34,6 +39,7 @@ public class WoodenItems {
 
     static {
         for (Fluid fluid : ForgeRegistries.FLUIDS) {
+            System.out.println(String.format("Registering %s", fluid.getRegistryName()));
             if (fluid == Fluids.EMPTY || fluid.getRegistryName().getPath().startsWith("flowing")) {
                 continue;
             }
