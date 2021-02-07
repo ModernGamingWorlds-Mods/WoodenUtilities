@@ -12,6 +12,7 @@ public class WoodenConstants {
 
     public static class Blocks {
         public static final String WOODEN_TANK = "wooden_tank";
+        public static final String RESIN_EXTRACTOR = "resin_extractor";
         public static final String RESIN = "resin";
         public static final String RESIN_FLOWING = "resin_flowing";
     }
