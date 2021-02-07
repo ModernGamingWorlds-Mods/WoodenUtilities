@@ -38,6 +38,10 @@ public class WoodenItems {
             .register(WoodenConstants.Blocks.WOODEN_TANK, () -> new BlockItem(WoodenBlocks.WOODEN_TANK.get(), new Item.Properties()
                     .group(WoodenItemGroup.INSTANCE)));
 
+    public static final RegistryObject<Item> RESIN_EXTRACTOR = ITEMS
+            .register(WoodenConstants.Blocks.RESIN_EXTRACTOR, () -> new BlockItem(WoodenBlocks.RESIN_EXTRACTOR.get(), new Item.Properties()
+                    .group(WoodenItemGroup.INSTANCE)));
+
     static {
         for (Fluid fluid : ForgeRegistries.FLUIDS) {
             if (fluid == Fluids.EMPTY || fluid.getRegistryName().getPath().startsWith("flowing")) {
