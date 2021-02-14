@@ -1,7 +1,7 @@
 package com.bedrocklegends.woodenutilities.item;
 
 import com.bedrocklegends.woodenutilities.setup.WoodenItemGroup;
-import com.bedrocklegends.woodenutilities.utility.IUpgradable;
+import com.bedrocklegends.woodenutilities.tile.UpgradableTileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -17,7 +17,7 @@ public abstract class UpgradeItem extends Item {
         super(new Properties().group(WoodenItemGroup.INSTANCE));
     }
 
-    public abstract boolean onApply(IUpgradable upgradable, ItemStack upgrade);
+    public abstract boolean onApply(UpgradableTileEntity upgradable, ItemStack upgrade);
 
     @Override
     @Nonnull
@@ -26,10 +26,10 @@ public abstract class UpgradeItem extends Item {
         World world = context.getWorld();
 
         if (world.isRemote) return ActionResultType.PASS;
-        if (!world.getBlockState(pos).hasTileEntity() && !(world.getTileEntity(pos) instanceof IUpgradable))
+        if (!world.getBlockState(pos).hasTileEntity() && !(world.getTileEntity(pos) instanceof UpgradableTileEntity))
             return ActionResultType.PASS;
 
-        IUpgradable upgradable = (IUpgradable) world.getTileEntity(pos);
+        UpgradableTileEntity upgradable = (UpgradableTileEntity) world.getTileEntity(pos);
         if (upgradable == null) return ActionResultType.PASS;
         ItemStack uniqueCopy = context.getItem();
         uniqueCopy.setCount(1);
