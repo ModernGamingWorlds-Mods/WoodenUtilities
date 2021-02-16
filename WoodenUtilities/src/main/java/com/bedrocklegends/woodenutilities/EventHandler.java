@@ -1,7 +1,6 @@
 package com.bedrocklegends.woodenutilities;
 
 import com.bedrocklegends.woodenutilities.api.APIUtils;
-import com.bedrocklegends.woodenutilities.api.WoodenUtilitiesAPI;
 import com.bedrocklegends.woodenutilities.api.event.PostSaplingGrowEvent;
 import com.bedrocklegends.woodenutilities.api.resin.ResinProvider;
 import com.bedrocklegends.woodenutilities.item.ResinTapItem;
@@ -31,7 +30,8 @@ public class EventHandler {
     @SubscribeEvent
     public static void onTagUpdateComplete(TagsUpdatedEvent event) {
         for (Block block : BlockTags.LOGS.getAllElements()) {
-            WoodenUtilitiesAPI.RESIN_PROVIDERS.add(new ResinProvider(10, block));
+            //TODO: Readd in the next pr
+            //WoodenUtilitiesAPI.RESIN_PROVIDERS.add(new ResinProvider(10, block));
         }
     }
 
@@ -64,10 +64,10 @@ public class EventHandler {
         ItemStack stack = e.getPlayer().getHeldItem(Hand.MAIN_HAND);
 
         if (!world.isRemote()) {
-            if (stack.getItem() == WoodenItems.RESIN_TAP.get()){
+            if (stack.getItem() == WoodenItems.RESIN_TAP.get()) {
                 ResinProvider resinProvider = APIUtils.getResinProviderFor(e.getState().getBlock());
-                if(resinProvider != null){
-                    if(ResinTapItem.canAdd(stack)){
+                if (resinProvider != null) {
+                    if (ResinTapItem.canAdd(stack)) {
                         e.setCanceled(true);
                         world.destroyBlock(e.getPos(), false);
                         stack.damageItem(1, playerEntity, (stackIn) -> stackIn.sendBreakAnimation(Hand.MAIN_HAND));
