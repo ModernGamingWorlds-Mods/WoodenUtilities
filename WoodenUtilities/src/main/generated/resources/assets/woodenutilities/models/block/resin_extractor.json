@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "woodenutilities:blocks/resin_extractor",
+    "front": "woodenutilities:blocks/resin_extractor_front",
+    "top": "woodenutilities:blocks/resin_extractor"
+  }
+}
