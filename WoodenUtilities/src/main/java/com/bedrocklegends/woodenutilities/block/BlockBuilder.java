@@ -13,7 +13,7 @@ public class BlockBuilder {
     private Supplier<TileEntity> tileEntitySupplier;
 
     private BlockBuilder(Material material) {
-        this.properties = AbstractBlock.Properties.create(material);
+        this.properties = AbstractBlock.Properties.of(material);
     }
 
     public static BlockBuilder create(Material material) {
@@ -26,12 +26,12 @@ public class BlockBuilder {
     }
 
     public BlockBuilder hardness(float hardness) {
-        this.properties.hardnessAndResistance(hardness);
+        this.properties.strength(hardness);
         return this;
     }
 
     public BlockBuilder hardnessAndResistance(float hardness, float resistance) {
-        this.properties.hardnessAndResistance(hardness, resistance);
+        this.properties.strength(hardness, resistance);
         return this;
     }
 

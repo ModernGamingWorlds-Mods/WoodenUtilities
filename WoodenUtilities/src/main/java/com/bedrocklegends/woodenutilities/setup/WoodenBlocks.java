@@ -32,7 +32,7 @@ public class WoodenBlocks {
                     .tileEntitySupplier(ResinExtractorTile::new)));
     public static final RegistryObject<FlowingFluidBlock> RESIN = BLOCKS.register(WoodenConstants.Blocks.RESIN, () ->
             new FlowingFluidBlock(() -> WoodenFluids.RESIN.get(),
-                    AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+                    AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
 
     private WoodenBlocks() {
     }

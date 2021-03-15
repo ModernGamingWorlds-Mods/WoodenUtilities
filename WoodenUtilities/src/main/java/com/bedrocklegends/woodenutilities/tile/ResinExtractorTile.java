@@ -43,9 +43,11 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
         super(WoodenTiles.RESIN_EXTRACTOR.get());
     }
 
+
+
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        CompoundNBT nbt = super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        CompoundNBT nbt = super.save(compound);
         nbt.putInt(TAG_INTERNAL_RESIN, this.internalResin);
         nbt.putInt(TAG_CURRENT_TIME, this.currentTime);
         nbt.putBoolean(TAG_IS_WORKING, this.isWorking);
@@ -56,8 +58,8 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
         this.internalResin = nbt.getInt(TAG_INTERNAL_RESIN);
         this.currentTime = nbt.getInt(TAG_CURRENT_TIME);
         this.isWorking = nbt.getBoolean(TAG_IS_WORKING);
@@ -68,7 +70,7 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
 
     @Override
     public void tick() {
-        if (this.world != null && !this.world.isRemote) {
+        if (this.level != null && !this.level.isClientSide) {
             this.setFacing();
             this.increaseCurrentTime();
             if (this.currentTime >= this.finishTime) {
@@ -80,15 +82,15 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
     }
 
     public void startWorking() {
-        Preconditions.checkNotNull(this.world);
+        Preconditions.checkNotNull(this.level);
         //TODO: Config or upgrade
         int xzMax = 5;
         int yMax = 20;
-        this.blocksToExtractResin.addAll(BlockPos.getAllInBox(this.getPos().add(-xzMax, 0, -xzMax), this.getPos().add(xzMax, yMax, xzMax))
-                .filter(blockPos -> APIUtils.getResinProviderFor(this.world.getBlockState(blockPos).getBlock()) != null)
-                .map(BlockPos::toMutable)
-                .sorted(Comparator.comparing(BlockPos::getY))
-                .collect(Collectors.toList()));
+        this.blocksToExtractResin.addAll(BlockPos.betweenClosedStream(this.getBlockPos().offset(-xzMax, 0, -xzMax), this.getBlockPos().offset(xzMax, yMax, xzMax))
+            .filter(blockPos -> APIUtils.getResinProviderFor(this.level.getBlockState(blockPos).getBlock()) != null)
+            .map(BlockPos::mutable)
+            .sorted(Comparator.comparing(BlockPos::getY))
+            .collect(Collectors.toList()));
 
         if (!this.blocksToExtractResin.isEmpty()) {
             this.setIsWorking(true);
@@ -96,17 +98,17 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
     }
 
     private void extractResinFromProvider() {
-        Preconditions.checkNotNull(this.world);
+        Preconditions.checkNotNull(this.level);
         if (this.isWorking && this.internalResin < this.maxStorage) {
             if (!this.blocksToExtractResin.isEmpty()) {
                 BlockPos lastElement = this.blocksToExtractResin.get(this.blocksToExtractResin.size() - 1);
-                ResinProvider resinProvider = APIUtils.getResinProviderFor(this.world.getBlockState(lastElement).getBlock());
+                ResinProvider resinProvider = APIUtils.getResinProviderFor(this.level.getBlockState(lastElement).getBlock());
                 if (resinProvider != null) {
-                    EventManager.onExtractResinFromBlockPre(this.world, this.pos, lastElement, resinProvider, this.internalResin);
+                    EventManager.onExtractResinFromBlockPre(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin);
                     this.blocksToExtractResin.remove(lastElement);
-                    this.world.destroyBlock(lastElement, false);
+                    this.level.destroyBlock(lastElement, false);
                     this.increaseResin(resinProvider.getAmount());
-                    this.setInternalResin(EventManager.onExtractResinFromBlockPost(this.world, this.pos, lastElement, resinProvider, this.internalResin));
+                    this.setInternalResin(EventManager.onExtractResinFromBlockPost(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin));
                 }
             } else {
                 this.setIsWorking(false);
@@ -115,51 +117,51 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
     }
 
     private void transferLiquidResin() {
-        Preconditions.checkNotNull(this.world);
-        BlockPos behindPos = this.getPos().offset(this.facing.getOpposite());
-        boolean hasFluidStorageBehind = this.world.getBlockState(behindPos).hasTileEntity()
-                && this.world.getTileEntity(behindPos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).isPresent();
+        Preconditions.checkNotNull(this.level);
+        BlockPos behindPos = this.getBlockPos().offset(this.facing.getOpposite().getNormal());
+        boolean hasFluidStorageBehind = this.level.getBlockState(behindPos).hasTileEntity()
+                && this.level.getBlockEntity(behindPos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).isPresent();
 
-        if (!EventManager.onExtractLiquidResin(world, pos)) return;
+        if (!EventManager.onExtractLiquidResin(level, getBlockPos())) return;
         if (this.internalResin <= 0) return;
         if (!hasFluidStorageBehind) return;
-        IFluidHandler handler = this.world.getTileEntity(behindPos).getTileEntity().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElseThrow(NullPointerException::new);
+        IFluidHandler handler = this.level.getBlockEntity(behindPos).getTileEntity().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElseThrow(NullPointerException::new);
         handler.fill(new FluidStack(WoodenFluids.RESIN.get().getFluid(), this.internalResin), IFluidHandler.FluidAction.EXECUTE);
         this.increaseResin(-this.internalResin);
     }
 
     private void increaseCurrentTime() {
         this.currentTime++;
-        this.markDirty();
+        this.setChanged();
     }
 
     private void resetTimer() {
         this.currentTime = 0;
-        this.markDirty();
+        this.setChanged();
     }
 
     private void increaseResin(int amount) {
         this.internalResin = Math.min(this.internalResin + amount, this.maxStorage);
-        this.markDirty();
+        this.setChanged();
     }
 
     private void setInternalResin(int amount) {
         this.internalResin = Math.min(amount, this.maxStorage);
-        this.markDirty();
+        this.setChanged();
     }
 
     private void setIsWorking(boolean value) {
         this.isWorking = value;
-        this.markDirty();
+        this.setChanged();
     }
 
     public BlockPos getFacingPos() {
-        return this.getPos().offset(this.facing);
+        return this.getBlockPos().offset(this.facing.getNormal());
     }
 
     private void setFacing() {
         if (this.getBlockState().hasProperty(ResinExtractorBlock.FACING) && this.facing == null) {
-            this.facing = this.getBlockState().get(ResinExtractorBlock.FACING);
+            this.facing = this.getBlockState().getValue(ResinExtractorBlock.FACING);
         }
     }
 }
