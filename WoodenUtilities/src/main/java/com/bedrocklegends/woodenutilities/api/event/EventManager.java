@@ -11,10 +11,6 @@ import java.util.Random;
 
 public class EventManager {
 
-    public static void onPostSaplingGrow(Tree tree, ServerWorld serverWorld, Random random, BlockPos pos) {
-        MinecraftForge.EVENT_BUS.post(new PostSaplingGrowEvent(tree, serverWorld, random, pos));
-    }
-
     public static boolean onExtractLiquidResin(World world, BlockPos pos) {
         return !MinecraftForge.EVENT_BUS.post(new ResinExtractorEvent.ExtractLiquidResin(world, pos));
     }
