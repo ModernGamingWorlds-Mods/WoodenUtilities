@@ -16,11 +16,11 @@ public class WoodenTiles {
 
     public static final RegistryObject<TileEntityType<WoodenTankTile>> WOODEN_TANK = TILES
             .register(WoodenConstants.Blocks.WOODEN_TANK, () -> TileEntityType.Builder
-                    .create(WoodenTankTile::new, WoodenBlocks.WOODEN_TANK.get()).build(null));
+                    .of(WoodenTankTile::new, WoodenBlocks.WOODEN_TANK.get()).build(null));
 
     public static final RegistryObject<TileEntityType<ResinExtractorTile>> RESIN_EXTRACTOR = TILES
             .register(WoodenConstants.Blocks.RESIN_EXTRACTOR, () -> TileEntityType.Builder
-                    .create(ResinExtractorTile::new, WoodenBlocks.RESIN_EXTRACTOR.get()).build(null));
+                    .of(ResinExtractorTile::new, WoodenBlocks.RESIN_EXTRACTOR.get()).build(null));
 
     public static void register() {
         TILES.register(FMLJavaModLoadingContext.get().getModEventBus());

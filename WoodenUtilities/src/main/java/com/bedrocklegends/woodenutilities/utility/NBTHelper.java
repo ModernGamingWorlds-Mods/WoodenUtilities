@@ -21,7 +21,7 @@ public class NBTHelper {
 
     public static List<BlockPos> readBlockPosList(CompoundNBT nbt) {
         List<BlockPos> blockPosList = new ArrayList<>();
-        for (String s : nbt.keySet()) {
+        for (String s : nbt.getAllKeys()) {
             blockPosList.add(NBTUtil.readBlockPos(nbt.getCompound(s)));
         }
         return blockPosList;

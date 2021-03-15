@@ -14,28 +14,28 @@ import javax.annotation.Nonnull;
 public abstract class UpgradeItem extends Item {
 
     public UpgradeItem() {
-        super(new Properties().group(WoodenItemGroup.INSTANCE));
+        super(new Properties().tab(WoodenItemGroup.INSTANCE));
     }
 
     public abstract boolean onApply(UpgradableTileEntity upgradable, ItemStack upgrade);
 
     @Override
     @Nonnull
-    public ActionResultType onItemUse(ItemUseContext context) {
-        BlockPos pos = context.getPos();
-        World world = context.getWorld();
+    public ActionResultType useOn(ItemUseContext context) {
+        BlockPos pos = context.getClickedPos();
+        World world = context.getLevel();
 
-        if (world.isRemote) return ActionResultType.PASS;
-        if (!world.getBlockState(pos).hasTileEntity() && !(world.getTileEntity(pos) instanceof UpgradableTileEntity))
+        if (world.isClientSide) return ActionResultType.PASS;
+        if (!world.getBlockState(pos).hasTileEntity() && !(world.getBlockEntity(pos) instanceof UpgradableTileEntity))
             return ActionResultType.PASS;
 
-        UpgradableTileEntity upgradable = (UpgradableTileEntity) world.getTileEntity(pos);
+        UpgradableTileEntity upgradable = (UpgradableTileEntity) world.getBlockEntity(pos);
         if (upgradable == null) return ActionResultType.PASS;
-        ItemStack uniqueCopy = context.getItem();
+        ItemStack uniqueCopy = context.getItemInHand();
         uniqueCopy.setCount(1);
         boolean applyResult = this.onApply(upgradable, uniqueCopy);
         if (applyResult) {
-            context.getItem().shrink(1);
+            context.getItemInHand().shrink(1);
             return ActionResultType.SUCCESS;
         }
         return ActionResultType.PASS;

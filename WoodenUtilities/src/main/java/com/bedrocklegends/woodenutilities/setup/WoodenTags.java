@@ -10,6 +10,6 @@ public class WoodenTags {
     public static ITag.INamedTag<Fluid> RESIN;
 
     public static void register(){
-        RESIN = FluidTags.makeWrapperTag(WoodenConstants.Blocks.RESIN);
+        RESIN = FluidTags.bind(WoodenConstants.Blocks.RESIN);
     }
 }

@@ -25,22 +25,22 @@ public class WoodenItems {
 
     public static final RegistryObject<Item> WOODEN_BUCKET = ITEMS
             .register(WoodenConstants.Items.WOODEN_BUCKET, () -> new WoodenBucketItem(() -> Fluids.EMPTY, (new Item.Properties())
-                    .maxStackSize(16).group(WoodenItemGroup.INSTANCE)));
+                    .stacksTo(16).tab(WoodenItemGroup.INSTANCE)));
     public static final RegistryObject<Item> WOODEN_PLATE = ITEMS
-            .register(WoodenConstants.Items.WOODEN_PLATE, () -> new Item(new Item.Properties().group(WoodenItemGroup.INSTANCE)));
+            .register(WoodenConstants.Items.WOODEN_PLATE, () -> new Item(new Item.Properties().tab(WoodenItemGroup.INSTANCE)));
 
     //Universal Resin Bucket
     public static final RegistryObject<Item> RESIN_BUCKET = ITEMS.register(WoodenConstants.Items.RESIN_BUCKET,
-            () -> new BucketItem(() -> WoodenFluids.RESIN.get(), (new Item.Properties()).maxStackSize(16).group(WoodenItemGroup.INSTANCE)));
+            () -> new BucketItem(() -> WoodenFluids.RESIN.get(), (new Item.Properties()).stacksTo(16).tab(WoodenItemGroup.INSTANCE)));
 
     //Rings
     public static final RegistryObject<Item> WOODEN_TANK = ITEMS
             .register(WoodenConstants.Blocks.WOODEN_TANK, () -> new BlockItem(WoodenBlocks.WOODEN_TANK.get(), new Item.Properties()
-                    .group(WoodenItemGroup.INSTANCE)));
+                    .tab(WoodenItemGroup.INSTANCE)));
 
     public static final RegistryObject<Item> RESIN_EXTRACTOR = ITEMS
             .register(WoodenConstants.Blocks.RESIN_EXTRACTOR, () -> new BlockItem(WoodenBlocks.RESIN_EXTRACTOR.get(), new Item.Properties()
-                    .group(WoodenItemGroup.INSTANCE)));
+                    .tab(WoodenItemGroup.INSTANCE)));
 
     static {
         for (Fluid fluid : ForgeRegistries.FLUIDS) {
@@ -50,7 +50,7 @@ public class WoodenItems {
             BUCKETS.put(Objects.requireNonNull(fluid.getRegistryName()).toString(), ITEMS
                     .register("wooden_" + fluid.getRegistryName()
                             .getPath() + "_bucket", () -> new WoodenBucketItem(fluid::getFluid, (new Item.Properties())
-                            .maxStackSize(1).group(WoodenItemGroup.INSTANCE))));
+                            .stacksTo(1).tab(WoodenItemGroup.INSTANCE))));
         }
     }
 

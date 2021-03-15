@@ -22,23 +22,23 @@ public class EventHandler {
 
     @SubscribeEvent
     public static void onTagUpdateComplete(TagsUpdatedEvent event) {
-        for (Block block : BlockTags.LOGS.getAllElements()) {
+        for (Block block : BlockTags.LOGS.getValues()) {
             ResinProviderManager.add(new ResinProvider(10, block));
         }
     }
 
     @SubscribeEvent
     public static void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
-        event.getEntityLiving().handleFluidAcceleration(WoodenTags.RESIN, 0.05D);
+        event.getEntityLiving().updateFluidHeightAndDoFluidPushing(WoodenTags.RESIN, 0.05D);
     }
 
     @SubscribeEvent
     public static void onPostSaplingGrow(PostSaplingGrowEvent e) {
-        for (Direction value : Direction.Plane.HORIZONTAL.getDirectionValues().collect(Collectors.toList())) {
-            BlockPos atDir = e.getPos().offset(value);
+        for (Direction value : Direction.Plane.HORIZONTAL.stream().collect(Collectors.toList())) {
+            BlockPos atDir = e.getPos().offset(value.getNormal());
             Block blockAtDir = e.getWorld().getBlockState(atDir).getBlock();
             if (blockAtDir == WoodenBlocks.RESIN_EXTRACTOR.get()) {
-                ResinExtractorTile resinExtractor = (ResinExtractorTile) e.getWorld().getTileEntity(atDir);
+                ResinExtractorTile resinExtractor = (ResinExtractorTile) e.getWorld().getBlockEntity(atDir);
                 if (resinExtractor != null) {
                     if (resinExtractor.getFacingPos().equals(e.getPos())) {
                         resinExtractor.startWorking();

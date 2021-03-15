@@ -28,22 +28,24 @@ public class UpgradableTileEntity extends TileEntity {
 
     @Override
     @Nonnull
-    public CompoundNBT write(@Nonnull CompoundNBT compound) {
-        CompoundNBT nbt = super.write(compound);
+    public CompoundNBT save(@Nonnull CompoundNBT compound) {
+        CompoundNBT nbt = super.save(compound);
         nbt.putInt(TAG_NUM_UPGRADES, this.numOfUpgrades);
-        if (!this.upgrades.isEmpty()) {
-            nbt.put(TAG_UPGRADES, NBTHelper.writeItemStackList(this.upgrades));
-        }
+        // FIXME
+//        if (!this.upgrades.isEmpty()) {
+//            nbt.put(TAG_UPGRADES, NBTHelper.writeItemStackList(this.upgrades));
+//        }
         return nbt;
     }
 
     @Override
-    public void read(@Nonnull BlockState state, @Nonnull CompoundNBT nbt) {
-        super.read(state, nbt);
+    public void load(@Nonnull BlockState state, @Nonnull CompoundNBT nbt) {
+        super.load(state, nbt);
         this.numOfUpgrades = nbt.getInt(TAG_NUM_UPGRADES);
-        if (nbt.contains(TAG_UPGRADES)) {
-            this.upgrades = NBTHelper.readItemStackList(nbt.getCompound(TAG_UPGRADES));
-        }
+        // FIXME
+//        if (nbt.contains(TAG_UPGRADES)) {
+//            this.upgrades = NBTHelper.readItemStackList(nbt.getCompound(TAG_UPGRADES));
+//        }
     }
 
     public int getNumOfUpgrades() {
