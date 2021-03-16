@@ -1,4 +1,4 @@
-package com.bedrocklegends.woodenutilities.api.resin;
+package com.bedrocklegends.woodenutilities.resin;
 
 import net.minecraft.block.Block;
 

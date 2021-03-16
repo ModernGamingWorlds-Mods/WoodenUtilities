@@ -1,8 +1,7 @@
-package com.bedrocklegends.woodenutilities.tile;
+package com.bedrocklegends.woodenutilities.tileentity;
 
 import com.bedrocklegends.woodenutilities.config.WoodenConfig;
 import com.bedrocklegends.woodenutilities.item.UpgradeItem;
-import com.bedrocklegends.woodenutilities.utility.NBTHelper;
 import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UpgradableTileEntity extends TileEntity {
+public abstract class UpgradableTileEntity extends TileEntity {
 
     public static final String TAG_NUM_UPGRADES = "NumOfUpgrades";
     private int numOfUpgrades;

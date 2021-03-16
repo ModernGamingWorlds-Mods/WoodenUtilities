@@ -9,6 +9,8 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 public class FluidBuilders {
+    private FluidBuilders() {
+    }
 
     public static ForgeFlowingFluid.Properties getResinAttributes() {
 

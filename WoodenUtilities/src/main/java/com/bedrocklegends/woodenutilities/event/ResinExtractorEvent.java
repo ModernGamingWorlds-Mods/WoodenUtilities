@@ -1,6 +1,6 @@
-package com.bedrocklegends.woodenutilities.api.event;
+package com.bedrocklegends.woodenutilities.event;
 
-import com.bedrocklegends.woodenutilities.api.resin.ResinProvider;
+import com.bedrocklegends.woodenutilities.resin.ResinProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.eventbus.api.Cancelable;

@@ -1,7 +1,7 @@
 package com.bedrocklegends.woodenutilities.item;
 
 import com.bedrocklegends.woodenutilities.setup.WoodenItemGroup;
-import com.bedrocklegends.woodenutilities.tile.UpgradableTileEntity;
+import com.bedrocklegends.woodenutilities.tileentity.UpgradableTileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;

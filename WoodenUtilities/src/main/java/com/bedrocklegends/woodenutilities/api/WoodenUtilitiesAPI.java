@@ -1,7 +1,7 @@
 package com.bedrocklegends.woodenutilities.api;
 
-import com.bedrocklegends.woodenutilities.api.resin.ResinProvider;
-import com.bedrocklegends.woodenutilities.api.resin.ResinProviderManager;
+import com.bedrocklegends.woodenutilities.resin.ResinProvider;
+import com.bedrocklegends.woodenutilities.resin.ResinProviderManager;
 import com.google.common.collect.ImmutableList;
 
 public class WoodenUtilitiesAPI {

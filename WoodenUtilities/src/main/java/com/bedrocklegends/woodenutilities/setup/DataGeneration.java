@@ -1,9 +1,9 @@
 package com.bedrocklegends.woodenutilities.setup;
 
 import com.bedrocklegends.woodenutilities.WoodenUtilities;
-import com.bedrocklegends.woodenutilities.data.WoodenBlockStateProvider;
-import com.bedrocklegends.woodenutilities.data.WoodenItemModelProvider;
-import com.bedrocklegends.woodenutilities.data.WoodenLanguageProvider;
+import com.bedrocklegends.woodenutilities.datagen.WoodenBlockStateGenerator;
+import com.bedrocklegends.woodenutilities.datagen.WoodenItemModelGenerator;
+import com.bedrocklegends.woodenutilities.datagen.WoodenLanguageGenerator;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,9 +18,9 @@ public class DataGeneration {
         final ExistingFileHelper efh = event.getExistingFileHelper();
 
         if (event.includeClient()) {
-            gen.addProvider(new WoodenItemModelProvider(gen, efh));
-            gen.addProvider(new WoodenBlockStateProvider(gen, efh));
-            gen.addProvider(new WoodenLanguageProvider(gen, "en_us"));
+            gen.addProvider(new WoodenItemModelGenerator(gen, efh));
+            gen.addProvider(new WoodenBlockStateGenerator(gen, efh));
+            gen.addProvider(new WoodenLanguageGenerator(gen, "en_us"));
         }
     }
 }

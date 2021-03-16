@@ -1,8 +1,8 @@
-package com.bedrocklegends.woodenutilities.tile;
+package com.bedrocklegends.woodenutilities.tileentity;
 
 import com.bedrocklegends.woodenutilities.api.APIUtils;
-import com.bedrocklegends.woodenutilities.api.event.EventManager;
-import com.bedrocklegends.woodenutilities.api.resin.ResinProvider;
+import com.bedrocklegends.woodenutilities.event.EventProvider;
+import com.bedrocklegends.woodenutilities.resin.ResinProvider;
 import com.bedrocklegends.woodenutilities.block.ResinExtractorBlock;
 import com.bedrocklegends.woodenutilities.setup.WoodenFluids;
 import com.bedrocklegends.woodenutilities.setup.WoodenTiles;
@@ -23,7 +23,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResinExtractorTile extends TileEntity implements ITickableTileEntity {
+public class ResinExtractorTileEntity extends TileEntity implements ITickableTileEntity {
 
     public static final String TAG_INTERNAL_RESIN = "StoredResin";
     private int internalResin = 0;
@@ -39,7 +39,7 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
 
     private Direction facing;
 
-    public ResinExtractorTile() {
+    public ResinExtractorTileEntity() {
         super(WoodenTiles.RESIN_EXTRACTOR.get());
     }
 
@@ -104,11 +104,12 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
                 BlockPos lastElement = this.blocksToExtractResin.get(this.blocksToExtractResin.size() - 1);
                 ResinProvider resinProvider = APIUtils.getResinProviderFor(this.level.getBlockState(lastElement).getBlock());
                 if (resinProvider != null) {
-                    EventManager.onExtractResinFromBlockPre(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin);
-                    this.blocksToExtractResin.remove(lastElement);
-                    this.level.destroyBlock(lastElement, false);
-                    this.increaseResin(resinProvider.getAmount());
-                    this.setInternalResin(EventManager.onExtractResinFromBlockPost(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin));
+                    if (EventProvider.onExtractResinFromBlockPre(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin)) {
+                        this.blocksToExtractResin.remove(lastElement);
+                        this.level.destroyBlock(lastElement, false);
+                        this.increaseResin(resinProvider.getAmount());
+                        this.setInternalResin(EventProvider.onExtractResinFromBlockPost(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin));
+                    }
                 }
             } else {
                 this.setIsWorking(false);
@@ -122,7 +123,7 @@ public class ResinExtractorTile extends TileEntity implements ITickableTileEntit
         boolean hasFluidStorageBehind = this.level.getBlockState(behindPos).hasTileEntity()
                 && this.level.getBlockEntity(behindPos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).isPresent();
 
-        if (!EventManager.onExtractLiquidResin(level, getBlockPos())) return;
+        if (!EventProvider.onExtractLiquidResin(level, getBlockPos())) return;
         if (this.internalResin <= 0) return;
         if (!hasFluidStorageBehind) return;
         IFluidHandler handler = this.level.getBlockEntity(behindPos).getTileEntity().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElseThrow(NullPointerException::new);

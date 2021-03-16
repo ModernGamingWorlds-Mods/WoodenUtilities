@@ -1,4 +1,4 @@
-package com.bedrocklegends.woodenutilities.data;
+package com.bedrocklegends.woodenutilities.datagen;
 
 import com.bedrocklegends.woodenutilities.WoodenUtilities;
 import com.bedrocklegends.woodenutilities.setup.WoodenBlocks;
@@ -9,8 +9,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.Objects;
 
-public class WoodenBlockStateProvider extends BlockStateProvider {
-    public WoodenBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
+public class WoodenBlockStateGenerator extends BlockStateProvider {
+    public WoodenBlockStateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, WoodenUtilities.ID, exFileHelper);
     }
 

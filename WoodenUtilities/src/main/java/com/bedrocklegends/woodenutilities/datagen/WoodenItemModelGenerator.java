@@ -1,4 +1,4 @@
-package com.bedrocklegends.woodenutilities.data;
+package com.bedrocklegends.woodenutilities.datagen;
 
 import com.bedrocklegends.woodenutilities.WoodenUtilities;
 import com.bedrocklegends.woodenutilities.setup.WoodenBlocks;
@@ -15,8 +15,8 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.Map;
 import java.util.Objects;
 
-public class WoodenItemModelProvider extends ItemModelProvider {
-    public WoodenItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+public class WoodenItemModelGenerator extends ItemModelProvider {
+    public WoodenItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, WoodenUtilities.ID, existingFileHelper);
     }
 

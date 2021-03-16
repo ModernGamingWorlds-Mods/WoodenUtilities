@@ -1,7 +1,7 @@
-package com.bedrocklegends.woodenutilities;
+package com.bedrocklegends.woodenutilities.event;
 
-import com.bedrocklegends.woodenutilities.api.resin.ResinProvider;
-import com.bedrocklegends.woodenutilities.api.resin.ResinProviderManager;
+import com.bedrocklegends.woodenutilities.resin.ResinProvider;
+import com.bedrocklegends.woodenutilities.resin.ResinProviderManager;
 import com.bedrocklegends.woodenutilities.setup.WoodenTags;
 import net.minecraft.block.Block;
 import net.minecraft.tags.BlockTags;

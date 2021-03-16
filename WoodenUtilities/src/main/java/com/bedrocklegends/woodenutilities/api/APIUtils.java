@@ -1,6 +1,6 @@
 package com.bedrocklegends.woodenutilities.api;
 
-import com.bedrocklegends.woodenutilities.api.resin.ResinProvider;
+import com.bedrocklegends.woodenutilities.resin.ResinProvider;
 import net.minecraft.block.Block;
 
 public class APIUtils {
