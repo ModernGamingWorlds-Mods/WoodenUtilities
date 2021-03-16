@@ -1,4 +1,4 @@
-package com.bedrocklegends.woodenutilities.util;
+package com.bedrocklegends.woodenutilities.builder;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NBTHelper {
+public class NBTBuilder {
 
     public static CompoundNBT writeBlockPosList(List<BlockPos> blockPosList) {
         CompoundNBT nbt = new CompoundNBT();

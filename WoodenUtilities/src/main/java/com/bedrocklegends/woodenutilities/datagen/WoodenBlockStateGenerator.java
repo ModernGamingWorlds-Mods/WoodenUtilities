@@ -3,7 +3,7 @@ package com.bedrocklegends.woodenutilities.datagen;
 import java.util.Objects;
 
 import com.bedrocklegends.woodenutilities.setup.SetupWoodenBlocks;
-import com.bedrocklegends.woodenutilities.util.WoodenConstants;
+import com.bedrocklegends.woodenutilities.util.Constants;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
@@ -12,7 +12,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class WoodenBlockStateGenerator extends BlockStateProvider {
     public WoodenBlockStateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, WoodenConstants.MODID, exFileHelper);
+        super(gen, Constants.MODID, exFileHelper);
     }
 
     @Override
@@ -22,6 +22,6 @@ public class WoodenBlockStateGenerator extends BlockStateProvider {
     }
 
     private ResourceLocation loc(String s){
-        return new ResourceLocation(WoodenConstants.MODID, s);
+        return new ResourceLocation(Constants.MODID, s);
     }
 }

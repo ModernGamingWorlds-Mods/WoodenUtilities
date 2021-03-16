@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.bedrocklegends.woodenutilities.item.WoodenBucketItem;
-import com.bedrocklegends.woodenutilities.util.WoodenConstants;
+import com.bedrocklegends.woodenutilities.util.Constants;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -20,26 +20,26 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class SetupWoodenItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister
-            .create(ForgeRegistries.ITEMS, WoodenConstants.MODID);
+            .create(ForgeRegistries.ITEMS, Constants.MODID);
     public static final Map<String, RegistryObject<Item>> BUCKETS = new HashMap<>();
 
     public static final RegistryObject<Item> WOODEN_BUCKET = ITEMS
-            .register(WoodenConstants.Items.WOODEN_BUCKET, () -> new WoodenBucketItem(() -> Fluids.EMPTY, (new Item.Properties())
+            .register(Constants.Items.WOODEN_BUCKET, () -> new WoodenBucketItem(() -> Fluids.EMPTY, (new Item.Properties())
                     .stacksTo(16).tab(SetupWoodenItemGroup.INSTANCE)));
     public static final RegistryObject<Item> WOODEN_PLATE = ITEMS
-            .register(WoodenConstants.Items.WOODEN_PLATE, () -> new Item(new Item.Properties().tab(SetupWoodenItemGroup.INSTANCE)));
+            .register(Constants.Items.WOODEN_PLATE, () -> new Item(new Item.Properties().tab(SetupWoodenItemGroup.INSTANCE)));
 
     //Universal Resin Bucket
-    public static final RegistryObject<Item> RESIN_BUCKET = ITEMS.register(WoodenConstants.Items.RESIN_BUCKET,
+    public static final RegistryObject<Item> RESIN_BUCKET = ITEMS.register(Constants.Items.RESIN_BUCKET,
             () -> new BucketItem(() -> SetupWoodenFluids.RESIN.get(), (new Item.Properties()).stacksTo(16).tab(SetupWoodenItemGroup.INSTANCE)));
 
     //Rings
     public static final RegistryObject<Item> WOODEN_TANK = ITEMS
-            .register(WoodenConstants.Blocks.WOODEN_TANK, () -> new BlockItem(SetupWoodenBlocks.WOODEN_TANK.get(), new Item.Properties()
+            .register(Constants.Blocks.WOODEN_TANK, () -> new BlockItem(SetupWoodenBlocks.WOODEN_TANK.get(), new Item.Properties()
                     .tab(SetupWoodenItemGroup.INSTANCE)));
 
     public static final RegistryObject<Item> RESIN_EXTRACTOR = ITEMS
-            .register(WoodenConstants.Blocks.RESIN_EXTRACTOR, () -> new BlockItem(SetupWoodenBlocks.RESIN_EXTRACTOR.get(), new Item.Properties()
+            .register(Constants.Blocks.RESIN_EXTRACTOR, () -> new BlockItem(SetupWoodenBlocks.RESIN_EXTRACTOR.get(), new Item.Properties()
                     .tab(SetupWoodenItemGroup.INSTANCE)));
 
     static {

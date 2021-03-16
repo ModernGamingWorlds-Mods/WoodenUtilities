@@ -1,12 +1,12 @@
 package com.bedrocklegends.woodenutilities.tileentity;
 
-import com.bedrocklegends.woodenutilities.api.APIUtils;
+import com.bedrocklegends.woodenutilities.api.FluidsAPI;
 import com.bedrocklegends.woodenutilities.event.EventProvider;
 import com.bedrocklegends.woodenutilities.resin.ResinProvider;
 import com.bedrocklegends.woodenutilities.block.ResinExtractorBlock;
+import com.bedrocklegends.woodenutilities.builder.NBTBuilder;
 import com.bedrocklegends.woodenutilities.setup.SetupWoodenFluids;
 import com.bedrocklegends.woodenutilities.setup.SetupWoodenTileEntities;
-import com.bedrocklegends.woodenutilities.util.NBTHelper;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
@@ -52,7 +52,7 @@ public class ResinExtractorTileEntity extends TileEntity implements ITickableTil
         nbt.putInt(TAG_CURRENT_TIME, this.currentTime);
         nbt.putBoolean(TAG_IS_WORKING, this.isWorking);
         if (!this.blocksToExtractResin.isEmpty()) {
-            nbt.put(TAG_BLOCKS_TO_DESTROY, NBTHelper.writeBlockPosList(this.blocksToExtractResin));
+            nbt.put(TAG_BLOCKS_TO_DESTROY, NBTBuilder.writeBlockPosList(this.blocksToExtractResin));
         }
         return nbt;
     }
@@ -64,7 +64,7 @@ public class ResinExtractorTileEntity extends TileEntity implements ITickableTil
         this.currentTime = nbt.getInt(TAG_CURRENT_TIME);
         this.isWorking = nbt.getBoolean(TAG_IS_WORKING);
         if (nbt.contains(TAG_BLOCKS_TO_DESTROY)) {
-            this.blocksToExtractResin = NBTHelper.readBlockPosList(nbt.getCompound(TAG_BLOCKS_TO_DESTROY));
+            this.blocksToExtractResin = NBTBuilder.readBlockPosList(nbt.getCompound(TAG_BLOCKS_TO_DESTROY));
         }
     }
 
@@ -87,7 +87,7 @@ public class ResinExtractorTileEntity extends TileEntity implements ITickableTil
         int xzMax = 5;
         int yMax = 20;
         this.blocksToExtractResin.addAll(BlockPos.betweenClosedStream(this.getBlockPos().offset(-xzMax, 0, -xzMax), this.getBlockPos().offset(xzMax, yMax, xzMax))
-            .filter(blockPos -> APIUtils.getResinProviderFor(this.level.getBlockState(blockPos).getBlock()) != null)
+            .filter(blockPos -> FluidsAPI.getResinProviderFor(this.level.getBlockState(blockPos).getBlock()) != null)
             .map(BlockPos::mutable)
             .sorted(Comparator.comparing(BlockPos::getY))
             .collect(Collectors.toList()));
@@ -102,7 +102,7 @@ public class ResinExtractorTileEntity extends TileEntity implements ITickableTil
         if (this.isWorking && this.internalResin < this.maxStorage) {
             if (!this.blocksToExtractResin.isEmpty()) {
                 BlockPos lastElement = this.blocksToExtractResin.get(this.blocksToExtractResin.size() - 1);
-                ResinProvider resinProvider = APIUtils.getResinProviderFor(this.level.getBlockState(lastElement).getBlock());
+                ResinProvider resinProvider = FluidsAPI.getResinProviderFor(this.level.getBlockState(lastElement).getBlock());
                 if (resinProvider != null) {
                     if (EventProvider.fireExtractResinFromBlockPreAndShouldRunPost(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin)) {
                         this.blocksToExtractResin.remove(lastElement);

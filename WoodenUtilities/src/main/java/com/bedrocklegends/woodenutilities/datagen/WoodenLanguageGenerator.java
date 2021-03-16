@@ -2,14 +2,14 @@ package com.bedrocklegends.woodenutilities.datagen;
 
 import com.bedrocklegends.woodenutilities.setup.SetupWoodenBlocks;
 import com.bedrocklegends.woodenutilities.setup.SetupWoodenItems;
-import com.bedrocklegends.woodenutilities.util.WoodenConstants;
+import com.bedrocklegends.woodenutilities.util.Constants;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class WoodenLanguageGenerator extends LanguageProvider {
     public WoodenLanguageGenerator(DataGenerator gen, String locale) {
-        super(gen, WoodenConstants.MODID, locale);
+        super(gen, Constants.MODID, locale);
     }
 
     @Override

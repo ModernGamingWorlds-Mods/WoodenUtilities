@@ -6,6 +6,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
+
+import com.bedrocklegends.woodenutilities.builder.BlockBuilder;
+
 import java.util.function.Supplier;
 
 public class BasicBlock extends Block {

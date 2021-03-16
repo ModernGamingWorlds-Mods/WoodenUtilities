@@ -3,7 +3,7 @@ package com.bedrocklegends.woodenutilities.setup;
 import com.bedrocklegends.woodenutilities.datagen.WoodenBlockStateGenerator;
 import com.bedrocklegends.woodenutilities.datagen.WoodenItemModelGenerator;
 import com.bedrocklegends.woodenutilities.datagen.WoodenLanguageGenerator;
-import com.bedrocklegends.woodenutilities.util.WoodenConstants;
+import com.bedrocklegends.woodenutilities.util.Constants;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
-@Mod.EventBusSubscriber(modid = WoodenConstants.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Constants.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SetupDataGeneration {
     @SubscribeEvent
     public static void onGatherData(final GatherDataEvent event) {

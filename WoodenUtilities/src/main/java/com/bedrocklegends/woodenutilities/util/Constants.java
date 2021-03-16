@@ -1,10 +1,11 @@
 package com.bedrocklegends.woodenutilities.util;
 
-public class WoodenConstants {
+import com.bedrocklegends.woodenutilities.resin.ResinProvider;
+import com.bedrocklegends.woodenutilities.resin.ResinProviderManager;
+import com.google.common.collect.ImmutableList;
+
+public class Constants {
 	public static final String MODID = "woodenutilities";
-	
-    private WoodenConstants() {
-    }
 
     public static class Items {
         public static final String WOODEN_PLATE = "wooden_plate";
@@ -18,12 +19,12 @@ public class WoodenConstants {
         public static final String RESIN = "resin";
         public static final String RESIN_FLOWING = "resin_flowing";
     }
+    
+    public static class Resin {
+    	public static final ImmutableList<ResinProvider> RESIN_PROVIDERS = ResinProviderManager.getProviders();
+    }
 
     public static class ModIds {
-
-        private ModIds() {
-        }
-
         public static final String WOODEN_UTILITIES = MODID;
     }
 }

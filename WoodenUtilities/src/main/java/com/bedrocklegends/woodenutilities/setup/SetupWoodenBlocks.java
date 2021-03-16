@@ -1,12 +1,12 @@
 package com.bedrocklegends.woodenutilities.setup;
 
 import com.bedrocklegends.woodenutilities.block.BasicBlock;
-import com.bedrocklegends.woodenutilities.block.BlockBuilder;
 import com.bedrocklegends.woodenutilities.block.ResinExtractorBlock;
 import com.bedrocklegends.woodenutilities.block.WoodenTankBlock;
+import com.bedrocklegends.woodenutilities.builder.BlockBuilder;
 import com.bedrocklegends.woodenutilities.tileentity.ResinExtractorTileEntity;
 import com.bedrocklegends.woodenutilities.tileentity.WoodenTankTileEntity;
-import com.bedrocklegends.woodenutilities.util.WoodenConstants;
+import com.bedrocklegends.woodenutilities.util.Constants;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -21,16 +21,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class SetupWoodenBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister
-            .create(ForgeRegistries.BLOCKS, WoodenConstants.MODID);
+            .create(ForgeRegistries.BLOCKS, Constants.MODID);
     public static final RegistryObject<BasicBlock> WOODEN_TANK = BLOCKS
-            .register(WoodenConstants.Blocks.WOODEN_TANK, () -> new WoodenTankBlock(BlockBuilder.create(Material.WOOD).sound(SoundType.WOOD)
+            .register(Constants.Blocks.WOODEN_TANK, () -> new WoodenTankBlock(BlockBuilder.create(Material.WOOD).sound(SoundType.WOOD)
                     .hardnessAndResistance(2.0F, 3.0F).harvestTool(ToolType.AXE).harvestLevel(0)
                     .tileEntitySupplier(WoodenTankTileEntity::new)));
     public static final RegistryObject<BasicBlock> RESIN_EXTRACTOR = BLOCKS
-            .register(WoodenConstants.Blocks.RESIN_EXTRACTOR, () -> new ResinExtractorBlock(BlockBuilder.create(Material.WOOD).sound(SoundType.WOOD)
+            .register(Constants.Blocks.RESIN_EXTRACTOR, () -> new ResinExtractorBlock(BlockBuilder.create(Material.WOOD).sound(SoundType.WOOD)
                     .hardnessAndResistance(2.0F, 3.0F).harvestTool(ToolType.AXE).harvestLevel(0)
                     .tileEntitySupplier(ResinExtractorTileEntity::new)));
-    public static final RegistryObject<FlowingFluidBlock> RESIN = BLOCKS.register(WoodenConstants.Blocks.RESIN, () ->
+    public static final RegistryObject<FlowingFluidBlock> RESIN = BLOCKS.register(Constants.Blocks.RESIN, () ->
             new FlowingFluidBlock(() -> SetupWoodenFluids.RESIN.get(),
                     AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
 

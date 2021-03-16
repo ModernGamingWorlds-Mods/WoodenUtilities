@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import com.bedrocklegends.woodenutilities.setup.SetupWoodenBlocks;
 import com.bedrocklegends.woodenutilities.setup.SetupWoodenItems;
-import com.bedrocklegends.woodenutilities.util.WoodenConstants;
+import com.bedrocklegends.woodenutilities.util.Constants;
 
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -18,7 +18,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class WoodenItemModelGenerator extends ItemModelProvider {
     public WoodenItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, WoodenConstants.MODID, existingFileHelper);
+        super(generator, Constants.MODID, existingFileHelper);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class WoodenItemModelGenerator extends ItemModelProvider {
     }
 
     private <T extends Block> void blockItem(RegistryObject<T> block, String texturePath) {
-        this.getBuilder(Objects.requireNonNull(block.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile(new ResourceLocation(WoodenConstants.MODID, texturePath)));
+        this.getBuilder(Objects.requireNonNull(block.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile(new ResourceLocation(Constants.MODID, texturePath)));
 
     }
 }

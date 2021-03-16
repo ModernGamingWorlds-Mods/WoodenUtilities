@@ -1,4 +1,4 @@
-package com.bedrocklegends.woodenutilities.block;
+package com.bedrocklegends.woodenutilities.builder;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.SoundType;
