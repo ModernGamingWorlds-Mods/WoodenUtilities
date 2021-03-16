@@ -1,24 +1,27 @@
 package com.bedrocklegends.woodenutilities;
 
-import com.bedrocklegends.woodenutilities.config.WoodenConfig;
-import com.bedrocklegends.woodenutilities.setup.*;
+import com.bedrocklegends.woodenutilities.config.ConfigHandler;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenBlocks;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenFluids;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenItems;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenTags;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenTileEntities;
+import com.bedrocklegends.woodenutilities.util.WoodenConstants;
+
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 
-@Mod(WoodenUtilities.ID)
+@Mod(WoodenConstants.MODID)
 public class WoodenUtilities {
-    /**
-     * @deprecated Use the constant in the WoodenConstants class
-     */
-    @Deprecated
-    public static final String ID = "woodenutilities";
-
-
     public WoodenUtilities() {
-        WoodenConfig.init();
-        WoodenItems.register();
-        WoodenBlocks.register();
-        WoodenTiles.register();
-        WoodenFluids.register();
-        WoodenTags.register();
+        ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
+    	
+        SetupWoodenItems.register();
+        SetupWoodenBlocks.register();
+        SetupWoodenTileEntities.register();
+        SetupWoodenFluids.register();
+        SetupWoodenTags.register();
     }
 }

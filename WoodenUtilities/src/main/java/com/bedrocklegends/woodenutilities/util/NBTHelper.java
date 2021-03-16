@@ -1,4 +1,4 @@
-package com.bedrocklegends.woodenutilities.utility;
+package com.bedrocklegends.woodenutilities.util;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;

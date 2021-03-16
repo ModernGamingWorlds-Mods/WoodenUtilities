@@ -1,18 +1,20 @@
 package com.bedrocklegends.woodenutilities.tileentity;
 
-import com.bedrocklegends.woodenutilities.config.WoodenConfig;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
+import com.bedrocklegends.woodenutilities.config.ConfigHandler;
 import com.bedrocklegends.woodenutilities.item.UpgradeItem;
 import com.google.common.collect.Lists;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class UpgradableTileEntity extends TileEntity {
 
@@ -84,6 +86,6 @@ public abstract class UpgradableTileEntity extends TileEntity {
     }
 
     public int getMaxUpgrades() {
-        return WoodenConfig.COMMON_CONFIG.maxUpgrades.get();
+        return ConfigHandler.GENERAL.maxUpgrades.get();
     }
 }

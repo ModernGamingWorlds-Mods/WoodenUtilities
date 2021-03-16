@@ -1,7 +1,7 @@
 package com.bedrocklegends.woodenutilities.tileentity;
 
 import com.bedrocklegends.woodenutilities.capability.WoodenFluidHandler;
-import com.bedrocklegends.woodenutilities.setup.WoodenTiles;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenTileEntities;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -14,7 +14,7 @@ public class WoodenTankTileEntity extends TileEntity {
     private final LazyOptional<WoodenFluidHandler> fluidHandlerLO = LazyOptional.of(() -> fluidHandler);
 
     public WoodenTankTileEntity() {
-        super(WoodenTiles.WOODEN_TANK.get());
+        super(SetupWoodenTileEntities.WOODEN_TANK.get());
     }
 
     @Override

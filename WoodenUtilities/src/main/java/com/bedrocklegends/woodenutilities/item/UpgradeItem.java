@@ -1,6 +1,6 @@
 package com.bedrocklegends.woodenutilities.item;
 
-import com.bedrocklegends.woodenutilities.setup.WoodenItemGroup;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenItemGroup;
 import com.bedrocklegends.woodenutilities.tileentity.UpgradableTileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 public abstract class UpgradeItem extends Item {
 
     public UpgradeItem() {
-        super(new Properties().tab(WoodenItemGroup.INSTANCE));
+        super(new Properties().tab(SetupWoodenItemGroup.INSTANCE));
     }
 
     public abstract boolean onApply(UpgradableTileEntity upgradable, ItemStack upgrade);

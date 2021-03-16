@@ -29,7 +29,8 @@ public class ResinExtractorBlock extends BasicBlock {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }

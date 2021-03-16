@@ -1,6 +1,8 @@
-package com.bedrocklegends.woodenutilities.utility;
+package com.bedrocklegends.woodenutilities.util;
 
 public class WoodenConstants {
+	public static final String MODID = "woodenutilities";
+	
     private WoodenConstants() {
     }
 
@@ -22,6 +24,6 @@ public class WoodenConstants {
         private ModIds() {
         }
 
-        public static final String WOODEN_UTILITIES = "woodenutilities";
+        public static final String WOODEN_UTILITIES = MODID;
     }
 }

@@ -4,9 +4,9 @@ import com.bedrocklegends.woodenutilities.api.APIUtils;
 import com.bedrocklegends.woodenutilities.event.EventProvider;
 import com.bedrocklegends.woodenutilities.resin.ResinProvider;
 import com.bedrocklegends.woodenutilities.block.ResinExtractorBlock;
-import com.bedrocklegends.woodenutilities.setup.WoodenFluids;
-import com.bedrocklegends.woodenutilities.setup.WoodenTiles;
-import com.bedrocklegends.woodenutilities.utility.NBTHelper;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenFluids;
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenTileEntities;
+import com.bedrocklegends.woodenutilities.util.NBTHelper;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
@@ -40,7 +40,7 @@ public class ResinExtractorTileEntity extends TileEntity implements ITickableTil
     private Direction facing;
 
     public ResinExtractorTileEntity() {
-        super(WoodenTiles.RESIN_EXTRACTOR.get());
+        super(SetupWoodenTileEntities.RESIN_EXTRACTOR.get());
     }
 
 
@@ -104,7 +104,7 @@ public class ResinExtractorTileEntity extends TileEntity implements ITickableTil
                 BlockPos lastElement = this.blocksToExtractResin.get(this.blocksToExtractResin.size() - 1);
                 ResinProvider resinProvider = APIUtils.getResinProviderFor(this.level.getBlockState(lastElement).getBlock());
                 if (resinProvider != null) {
-                    if (EventProvider.onExtractResinFromBlockPre(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin)) {
+                    if (EventProvider.fireExtractResinFromBlockPreAndShouldRunPost(this.level, this.getBlockPos(), lastElement, resinProvider, this.internalResin)) {
                         this.blocksToExtractResin.remove(lastElement);
                         this.level.destroyBlock(lastElement, false);
                         this.increaseResin(resinProvider.getAmount());
@@ -123,11 +123,11 @@ public class ResinExtractorTileEntity extends TileEntity implements ITickableTil
         boolean hasFluidStorageBehind = this.level.getBlockState(behindPos).hasTileEntity()
                 && this.level.getBlockEntity(behindPos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).isPresent();
 
-        if (!EventProvider.onExtractLiquidResin(level, getBlockPos())) return;
+        if (!EventProvider.fireExtractLiquidResinAndIsCancelled(level, getBlockPos())) return;
         if (this.internalResin <= 0) return;
         if (!hasFluidStorageBehind) return;
         IFluidHandler handler = this.level.getBlockEntity(behindPos).getTileEntity().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElseThrow(NullPointerException::new);
-        handler.fill(new FluidStack(WoodenFluids.RESIN.get().getFluid(), this.internalResin), IFluidHandler.FluidAction.EXECUTE);
+        handler.fill(new FluidStack(SetupWoodenFluids.RESIN.get().getFluid(), this.internalResin), IFluidHandler.FluidAction.EXECUTE);
         this.increaseResin(-this.internalResin);
     }
 

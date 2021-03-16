@@ -1,6 +1,11 @@
 package com.bedrocklegends.woodenutilities.item;
 
-import com.bedrocklegends.woodenutilities.setup.WoodenItems;
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
+
+import com.bedrocklegends.woodenutilities.setup.SetupWoodenItems;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,18 +22,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Direction;
+import net.minecraft.util.DrinkHelper;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
 
 public class WoodenBucketItem extends Item {
     private final Fluid containedBlock;
@@ -65,12 +71,12 @@ public class WoodenBucketItem extends Item {
                             SoundEvent soundevent = this.containedBlock.getAttributes().getFillSound();
                             if (soundevent == null) soundevent = fluid.is(FluidTags.LAVA) ? SoundEvents.BUCKET_FILL_LAVA : SoundEvents.BUCKET_FILL;
                             playerIn.playSound(soundevent, 1.0F, 1.0F);
-                            ItemStack itemstack1 = DrinkHelper.createFilledResult(itemstack, playerIn, new ItemStack(WoodenItems.BUCKETS.get(fluid.getRegistryName().toString()).get()));
+                            ItemStack itemstack1 = DrinkHelper.createFilledResult(itemstack, playerIn, new ItemStack(SetupWoodenItems.BUCKETS.get(fluid.getRegistryName().toString()).get()));
                             if (fluid == Fluids.LAVA) {
                                 itemstack1 = ItemStack.EMPTY;
                             }
                             if (!worldIn.isClientSide) {
-                                ItemStack stack = new ItemStack(WoodenItems.BUCKETS.get(fluid.getRegistryName().toString()).get());
+                                ItemStack stack = new ItemStack(SetupWoodenItems.BUCKETS.get(fluid.getRegistryName().toString()).get());
                                 if (fluid == Fluids.LAVA) {
                                     stack = ItemStack.EMPTY;
                                 }
@@ -102,20 +108,19 @@ public class WoodenBucketItem extends Item {
         }
     }
 
-    private boolean canBlockContainFluid(World worldIn, BlockPos posIn, BlockState blockstate)
-    {
+    private boolean canBlockContainFluid(World worldIn, BlockPos posIn, BlockState blockstate) {
         return blockstate.getBlock() instanceof ILiquidContainer && ((ILiquidContainer)blockstate.getBlock()).canPlaceLiquid(worldIn, posIn, blockstate, this.containedBlock);
     }
 
-
     protected ItemStack emptyBucket(ItemStack stack, PlayerEntity player) {
-        return !player.abilities.instabuild ? new ItemStack(WoodenItems.WOODEN_BUCKET.get()) : stack;
+        return !player.abilities.instabuild ? new ItemStack(SetupWoodenItems.WOODEN_BUCKET.get()) : stack;
     }
 
     public void onLiquidPlaced(World worldIn, ItemStack p_203792_2_, BlockPos pos) {
     }
 
-    public boolean tryPlaceContainedLiquid(@Nullable PlayerEntity player, World worldIn, BlockPos posIn, @Nullable BlockRayTraceResult rayTrace) {
+    @SuppressWarnings("deprecation")
+	public boolean tryPlaceContainedLiquid(@Nullable PlayerEntity player, World worldIn, BlockPos posIn, @Nullable BlockRayTraceResult rayTrace) {
         if (!(this.containedBlock instanceof FlowingFluid)) {
             return false;
         } else {
