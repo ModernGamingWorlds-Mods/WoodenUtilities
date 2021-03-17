@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "woodenutilities:oak_sawdust",
+    "woodenutilities:spruce_sawdust",
+    "woodenutilities:birch_sawdust",
+    "woodenutilities:jungle_sawdust",
+    "woodenutilities:acacia_sawdust",
+    "woodenutilities:dark_oak_sawdust",
+    "woodenutilities:crimson_sawdust",
+    "woodenutilities:warped_sawdust",
+  ]
+}
