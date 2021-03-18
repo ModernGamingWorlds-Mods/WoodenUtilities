@@ -1,0 +1,28 @@
+{
+  "type": "woodenutilities:fabrication_crafting_shaped",
+  "pattern": [
+    "GGG",
+    "RQR",
+    "WPW"
+  ],
+  "key": {
+    "Q": {
+      "tag": "forge:dusts/redstone"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "P": {
+      "tag": "forge:plates/wooden"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:wooden_solar_panel"
+  }
+}
