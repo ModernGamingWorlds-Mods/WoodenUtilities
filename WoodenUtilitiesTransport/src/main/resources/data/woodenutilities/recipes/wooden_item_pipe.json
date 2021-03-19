@@ -1,0 +1,20 @@
+{
+    "type": "woodenutilities:fabrication_crafting_shaped",
+    "pattern": [
+        "   ",
+        "IQI",
+        "   "
+    ],
+    "key": {
+        "I": {
+            "tag": "forge:plates/wooden"
+        },
+        "Q": {
+            "tag": "forge:chests/wooden"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_fluid_pipe",
+        "count": 2
+    }
+}
