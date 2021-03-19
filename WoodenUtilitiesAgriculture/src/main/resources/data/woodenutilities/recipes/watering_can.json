@@ -1,0 +1,19 @@
+{
+  "type": "woodenutilities:fabrication_crafting_shaped",
+  "pattern": [
+    " S ",
+    "SOS",
+    "SOS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:plates/wooden"
+    },
+    "O": {
+      "tag": "forge:water/water"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:watering_can"
+  }
+}
