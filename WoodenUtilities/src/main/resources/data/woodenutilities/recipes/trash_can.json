@@ -1,0 +1,22 @@
+{
+  "type": "woodenutilities:fabrication_crafting_shaped",
+  "pattern": [
+    "PPP",
+    "ISI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "minecraft:planks"
+    },
+    "P": {
+      "tag": "forge:plates/wooden"
+    },
+    "S": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:trash_can"
+  }
+}
