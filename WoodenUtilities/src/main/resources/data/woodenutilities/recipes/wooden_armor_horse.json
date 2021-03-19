@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IPI",
+        "I I"
+    ],
+    "key": {
+        "I": {
+            "tag": "forge:plates/wooden"
+        },
+        "P": {
+            "tag": "forge:leather"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_horse_armor"
+    }
+}

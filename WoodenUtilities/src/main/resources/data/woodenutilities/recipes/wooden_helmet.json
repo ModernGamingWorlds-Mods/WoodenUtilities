@@ -1,0 +1,15 @@
+{
+    "type": "woodenutilities:fabrication_crafting_shaped",
+    "pattern": [
+        "XXX",
+        "X X"
+    ],
+    "key": {
+        "X": {
+            "tag": "forge:plates/wooden"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_helmet"
+    }
+}

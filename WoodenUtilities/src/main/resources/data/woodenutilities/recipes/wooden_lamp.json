@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "III",
+        "IPI",
+        "III"
+    ],
+    "key": {
+        "I": {
+            "tag": "forge:plates/wooden"
+        },
+        "P": {
+            "item": "minecraft:torch"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_lamp"
+    }
+}
