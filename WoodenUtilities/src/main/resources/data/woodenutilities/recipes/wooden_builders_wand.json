@@ -1,5 +1,5 @@
 {
-    "type": "minecraft:crafting_shaped",
+    "type": "woodenutilities:fabrication_crafting_shaped",
     "pattern": [
         "  I",
         " S ",
