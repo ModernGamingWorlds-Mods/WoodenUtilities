@@ -7,9 +7,6 @@
     ],
     "key": {
         "I": {
-            "tag": "forge:plates/wooden"
-        },
-        "I": {
             "tag": "forge:rods/wooden"
         }
     },

@@ -1,19 +1,19 @@
 {
-  "type": "woodenutilities:fabrication_crafting_shaped",
+    "type": "woodenutilities:fabrication_crafting_shaped",
     "pattern": [
         "III",
         " P ",
         "P P"
-  ],
-  "key": {
-    "I": {
-      "tag": "forge:plates/wooden"
+    ],
+    "key": {
+        "I": {
+            "tag": "forge:plates/wooden"
+        },
+        "P": {
+            "tag": "forge:rods/wooden"
+        }
     },
-    "P": {
-      "tag": "forge:rods/wooden"
+    "result": {
+        "item": "woodenutilities:scaffolding"
     }
-  },
-  "result": {
-    "item": "woodenutilities:scaffolding"
-  }
 }

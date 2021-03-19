@@ -1,19 +1,19 @@
 {
-  "type": "woodenutilities:fabrication_crafting_shaped",
-  "pattern": [
-    "III",
-    "IPI",
-    "III"
-  ],
-  "key": {
-    "I": {
-      "tag": "minecraft:planks"
+    "type": "woodenutilities:fabrication_crafting_shaped",
+    "pattern": [
+        "III",
+        "IPI",
+        "III"
+    ],
+    "key": {
+        "I": {
+            "tag": "minecraft:planks"
+        },
+        "P": {
+            "tag": "forge:plates/wooden"
+        }
     },
-    "P": {
-      "tag": "forge:plates/wooden"
+    "result": {
+        "item": "woodenutilities:wooden_furnace"
     }
-  },
-  "result": {
-    "item": "woodenutilities:wooden_furnace"
-  }
 }
