@@ -1,16 +1,16 @@
 {
-  "type": "woodenutilities:fabrication_crafting_shaped",
-  "pattern": [
-    "   ",
-    "O  O",
-    "O  O"
-  ],
-  "key": {
-    "O": {
-      "item": "forge:rods/wooden"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "O  O",
+        "O  O"
+    ],
+    "key": {
+        "O": {
+            "item": "forge:rods/wooden"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:crop_sticks"
     }
-  },
-  "result": {
-    "item": "woodenutilities:crop_sticks"
-  }
 }
