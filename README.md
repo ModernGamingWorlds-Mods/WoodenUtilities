@@ -9,3 +9,8 @@
 [curseImg]: http://cf.way2muchnoise.eu/409871.svg
 
 [curseLink]: https://www.curseforge.com/minecraft/mc-mods/wooden-utilities
+
+## About the Mod:
+<p align="center">
+  <img width="1124" height="200" src="https://bisecthosting.com/images/CF/Wooden_Utilities/BH_WU_Header.png">
+</p>****
