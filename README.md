@@ -13,4 +13,8 @@
 ## About the Mod:
 <p align="center">
   <img width="1124" height="200" src="https://bisecthosting.com/images/CF/Wooden_Utilities/BH_WU_Header.png">
-</p>****
+</p>
+
+<p align="center">
+Wooden Utilities, an all-new Minecraft Mod that adds more Wood-Related items to your daily Minecraft Experience.
+</p>
