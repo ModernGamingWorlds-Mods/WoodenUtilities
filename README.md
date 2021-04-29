@@ -33,3 +33,8 @@ What's is the difference between this mod and other Wood-Related Mod Packs? 
 <p align="center">
 This mod has a very neat feature where certain wood items in the game can be Flammable and could set things on Fire. (Example: Wooden Furnaces)
 </p>
+
+
+<p align="center">
+  <img width="1124" height="200" src="https://bisecthosting.com/images/CF/Wooden_Utilities/BH_WU_Features.png">
+</p>
