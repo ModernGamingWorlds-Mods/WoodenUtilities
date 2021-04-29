@@ -6,6 +6,6 @@
 
 [discordLink]: https://discord.gg/CTbZwZnFpZ
 
-[curseImg]: http://cf.way2muchnoise.eu/325071.svg
+[curseImg]: http://cf.way2muchnoise.eu/409871.svg
 
-[curseLink]: https://www.curseforge.com/minecraft/modpacks/expedition-in-the-sky
+[curseLink]: https://www.curseforge.com/minecraft/mc-mods/wooden-utilities
