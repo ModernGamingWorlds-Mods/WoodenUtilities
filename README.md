@@ -21,7 +21,8 @@ Wooden Utilities, an all-new Minecraft Mod that adds more Wood-Related items to 
 
 <p align="center">
 What's is the difference between this mod and other Wood-Related Mod Packs? 
+</p>
 
- 
+<p align="center">
 This mod has a very neat feature where certain wood items in the game can be Flammable and could set things on Fire. (Example: Wooden Furnaces)
 </p>
