@@ -1,6 +1,3 @@
 {
-  "block.woodenutilities.resin_extractor": "Resin Extractor",
-  "block.woodenutilities.wooden_tank": "Wooden Tank",
-  "fluid.woodenutilities.resin": "Resin",
-  "item.woodenutilities.resin_bucket": "Resin Bucket"
+  "block.woodenutilities.wooden_tank": "Wooden Tank"
 }
