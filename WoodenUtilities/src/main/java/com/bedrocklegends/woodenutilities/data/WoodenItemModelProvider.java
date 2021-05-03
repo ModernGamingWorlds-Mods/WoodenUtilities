@@ -3,7 +3,6 @@ package com.bedrocklegends.woodenutilities.data;
 import com.bedrocklegends.woodenutilities.WoodenUtilities;
 import com.bedrocklegends.woodenutilities.setup.WoodenBlocks;
 import com.bedrocklegends.woodenutilities.setup.WoodenItems;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -23,21 +22,11 @@ public class WoodenItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         for (Map.Entry<String, RegistryObject<Item>> entry : WoodenItems.BUCKETS.entrySet()) {
-            this.zeroLayered(entry.getValue(), "item/handheld", "items/wooden_bucket");
+            String s = Objects.requireNonNull(entry.getValue().get().getRegistryName()).toString();
+            this.getBuilder(s).parent(new ModelFile.UncheckedModelFile("item/handheld")).texture("layer0", "items/wooden_bucket");
         }
-        this.zeroLayered(WoodenItems.RESIN_BUCKET, "item/handheld", "items/resin_bucket");
-        this.zeroLayered(WoodenItems.WOODEN_BUCKET, "item/handheld", "items/wooden_bucket");
-        this.zeroLayered(WoodenItems.WOODEN_PLATE, "item/generated", "items/wooden_plate");
-        this.blockItem(WoodenBlocks.WOODEN_TANK, "block/wooden_tank");
-        this.blockItem(WoodenBlocks.RESIN_EXTRACTOR, "block/resin_extractor");
-    }
-
-    private void zeroLayered(RegistryObject<Item> item, String parent, String texturePath) {
-        this.getBuilder(Objects.requireNonNull(item.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile(parent)).texture("layer0", texturePath);
-    }
-
-    private <T extends Block> void blockItem(RegistryObject<T> block, String texturePath) {
-        this.getBuilder(Objects.requireNonNull(block.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile(new ResourceLocation(WoodenUtilities.ID, texturePath)));
-
+        this.getBuilder(Objects.requireNonNull(WoodenItems.WOODEN_BUCKET.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile("item/handheld")).texture("layer0", "items/wooden_bucket");
+        this.getBuilder(Objects.requireNonNull(WoodenItems.WOODEN_PLATE.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", "items/wooden_plate");
+        this.getBuilder(Objects.requireNonNull(WoodenItems.WOODEN_TANK.get().getRegistryName()).toString()).parent(new ModelFile.UncheckedModelFile(new ResourceLocation(WoodenUtilities.ID, "block/wooden_tank")));
     }
 }

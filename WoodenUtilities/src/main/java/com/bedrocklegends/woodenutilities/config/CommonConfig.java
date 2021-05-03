@@ -8,9 +8,6 @@ public class CommonConfig {
     public ForgeConfigSpec.BooleanValue includeWoodenBucket;
     public ForgeConfigSpec.BooleanValue includeWoodenTank;
 
-    //Pls let me know if we just change this to other place. this config system is very messy.
-    public ForgeConfigSpec.IntValue maxUpgrades;
-
     public CommonConfig(ForgeConfigSpec.Builder builder) {
         initFeatureFlags(builder);
     }
@@ -20,12 +17,6 @@ public class CommonConfig {
 
         includeWoodenBucket = builder.define("include_wooden_bucket", true);
         includeWoodenTank = builder.define("include_wooden_tank", true);
-
-        builder.pop();
-
-        builder.comment("Other").push("Other Configs");
-
-        maxUpgrades = builder.defineInRange("max_upgrades", 5, 1, Integer.MAX_VALUE);
 
         builder.pop();
     }
