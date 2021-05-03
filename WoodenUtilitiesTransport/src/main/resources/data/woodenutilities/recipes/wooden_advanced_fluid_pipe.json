@@ -1,0 +1,23 @@
+{
+    "type": "woodenutilities:fabrication_crafting_shaped",
+    "pattern": [
+        " E ",
+        "IQI",
+        " E "
+    ],
+    "key": {
+        "I": {
+            "tag": "forge:plates/wooden"
+        },
+        "Q": {
+            "tag": "forge:glass"
+        },
+        "E": {
+            "item": "woodenutilities:resin_bucket"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_fluid_pipe",
+        "count": 2
+    }
+}

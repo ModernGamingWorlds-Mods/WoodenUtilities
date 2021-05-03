@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        " S ",
+        " F "
+    ],
+    "key": {
+        "O": {
+            "item": "forge:plates/wooden"
+        },
+        "F": {
+            "item": "forge:rods/wooden"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_rake"
+    }
+}

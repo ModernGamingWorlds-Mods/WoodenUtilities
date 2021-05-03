@@ -1,0 +1,18 @@
+{
+  "type": "woodenutilities:fabrication_crafting_shaped",
+  "pattern": [
+    " P ",
+    "III"
+  ],
+  "key": {
+    "P": {
+      "item": "woodenutilities:wooden_plate"
+    },
+    "I": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:wood_cutter"
+  }
+}

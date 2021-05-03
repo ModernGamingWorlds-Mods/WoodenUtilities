@@ -1,0 +1,19 @@
+{
+  "type": "woodenutilities:fabrication_crafting_shaped",
+  "pattern": [
+    " # ",
+    "#O#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:plates/wooden"
+    },
+    "O": {
+      "item": "minecraft:diamond_axe"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:lumberjack_ring"
+  }
+}

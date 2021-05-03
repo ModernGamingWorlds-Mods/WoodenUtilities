@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "III",
+        "P P"
+    ],
+    "key": {
+        "I": {
+            "tag": "forge:plates/wooden"
+        },
+        "P": {
+            "item": "woodenutilities:wooden_legs"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_fabrication_table"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "woodenutilities:fabrication_crafting_shaped",
+  "pattern":
+  [
+    "O O",
+    "O O",
+    "OOO"
+  ],
+  "key": {
+    "O": {
+      "item": "forge:plates/wooden"
+    }
+  },
+  "result": {
+    "item": "woodenutilities:water_tank"
+  }
+}

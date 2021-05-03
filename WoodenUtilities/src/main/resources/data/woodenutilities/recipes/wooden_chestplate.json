@@ -1,0 +1,16 @@
+{
+    "type": "woodenutilities:fabrication_crafting_shaped",
+    "pattern": [
+        "X X",
+        "XXX",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "tag": "forge:plates/wooden"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_chestplate"
+    }
+}

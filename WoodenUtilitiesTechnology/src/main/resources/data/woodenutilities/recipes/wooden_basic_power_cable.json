@@ -1,0 +1,19 @@
+{
+    "type": "woodenutilities:fabrication_crafting_shaped",
+    "pattern": [
+        " G ",
+        "GQG",
+        " G "
+    ],
+    "key": {
+        "G": {
+            "tag": "forge:plates/wooden"
+        },
+        "Q": {
+            "item": "woodenutilities:wooden_component"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_basic_power_cable"
+    }
+}

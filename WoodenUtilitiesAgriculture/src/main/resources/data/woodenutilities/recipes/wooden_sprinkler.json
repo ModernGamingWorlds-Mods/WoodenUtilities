@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " A ",
+        " A ",
+        "AUA"
+    ],
+    "key": {
+        "A": {
+            "item": "forge:plates/wooden"
+        },
+        "U": {
+            "item": "forge:water/water"
+        }
+    },
+    "result": {
+        "item": "woodenutilities:wooden_sprinkler"
+    }
+}
